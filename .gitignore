@@ -1,0 +1,17 @@
+# Mengabaikan folder settingan VS Code kamu sendiri
+.vscode/
+
+# Mengabaikan file sampah dari sistem operasi
+.DS_Store
+Thumbs.db
+
+# Mengabaikan file log jalannya program
+*.log
+
+# JIKA KAMU PAKAI NODE.JS / JAVASCRIPT (Hapus '#' di bawah jika pakai)
+# node_modules/
+
+# JIKA KAMU PAKAI PYTHON (Hapus '#' di bawah jika pakai)
+# __pycache__/
+# *.pyc
+# .venv/
