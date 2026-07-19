@@ -1,964 +1,2757 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KOSKU — Cari Kos Terbaik Sesuai Kebutuhanmu</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{
-  --sand:#e1b382;
-  --sand-dark:#c89666;
-  --night:#2d545e;
-  --night-dark:#12343b;
-  --cream:#faf3ea;
-  --cream-2:#f3e6d3;
-  --white:#fffdfb;
-  --text:#2a2420;
-  --text-soft:#6f6053;
-  --line:#e7d9c6;
-  --ok:#3f7d5c;
-  --ok-bg:#e4efe6;
-  --warn:#a8722f;
-  --warn-bg:#faead2;
-  --danger:#b1503f;
-  --danger-bg:#f7e6e0;
-  --radius:14px;
-  --shadow:0 4px 18px rgba(18,52,59,0.08);
-  --shadow-lg:0 18px 40px rgba(18,52,59,0.16);
-}
-*{box-sizing:border-box; margin:0; padding:0;}
-html{scroll-behavior:smooth;}
-body{
-  font-family:'Inter',sans-serif;
-  background:var(--cream);
-  color:var(--text);
-  min-height:100vh;
-  -webkit-font-smoothing:antialiased;
-}
-h1,h2,h3,h4{font-family:'Fraunces',serif; color:var(--night-dark); font-weight:600; letter-spacing:-0.01em;}
-a{color:inherit; text-decoration:none;}
-button{font-family:'Inter',sans-serif; cursor:pointer; border:none;}
-img{max-width:100%; display:block;}
-input,select,textarea{font-family:'Inter',sans-serif;}
-::selection{background:var(--sand); color:var(--night-dark);}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KOSKU — Cari Kos Terbaik Sesuai Kebutuhanmu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --sand: #e1b382;
+        --sand-dark: #c89666;
+        --night: #2d545e;
+        --night-dark: #12343b;
+        --cream: #faf3ea;
+        --cream-2: #f3e6d3;
+        --white: #fffdfb;
+        --text: #2a2420;
+        --text-soft: #6f6053;
+        --line: #e7d9c6;
+        --ok: #3f7d5c;
+        --ok-bg: #e4efe6;
+        --warn: #a8722f;
+        --warn-bg: #faead2;
+        --danger: #b1503f;
+        --danger-bg: #f7e6e0;
+        --radius: 14px;
+        --shadow: 0 4px 18px rgba(18, 52, 59, 0.08);
+        --shadow-lg: 0 18px 40px rgba(18, 52, 59, 0.16);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--cream);
+        color: var(--text);
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Fraunces", serif;
+        color: var(--night-dark);
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        font-family: "Inter", sans-serif;
+        cursor: pointer;
+        border: none;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      input,
+      select,
+      textarea {
+        font-family: "Inter", sans-serif;
+      }
+      ::selection {
+        background: var(--sand);
+        color: var(--night-dark);
+      }
 
-/* ---------- Roof / signature motif ---------- */
-.roof-tag{
-  position:relative;
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-}
-.roof-mark{
-  width:20px; height:16px;
-  position:relative;
-  flex:none;
-}
-.roof-mark svg{width:100%; height:100%; display:block;}
+      /* ---------- Roof / signature motif ---------- */
+      .roof-tag {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .roof-mark {
+        width: 20px;
+        height: 16px;
+        position: relative;
+        flex: none;
+      }
+      .roof-mark svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
 
-.roof-divider{
-  height:10px;
-  width:100%;
-  background:
-    linear-gradient(135deg, transparent 49%, var(--cream) 50%) 0 0/16px 16px repeat-x,
-    linear-gradient(-135deg, transparent 49%, var(--cream) 50%) 0 0/16px 16px repeat-x;
-  background-color:var(--night-dark);
-}
+      .roof-divider {
+        height: 10px;
+        width: 100%;
+        background:
+          linear-gradient(135deg, transparent 49%, var(--cream) 50%) 0 0/16px
+            16px repeat-x,
+          linear-gradient(-135deg, transparent 49%, var(--cream) 50%) 0 0/16px
+            16px repeat-x;
+        background-color: var(--night-dark);
+      }
 
-/* ---------- Buttons ---------- */
-.btn{
-  display:inline-flex; align-items:center; justify-content:center; gap:8px;
-  padding:11px 20px;
-  border-radius:10px;
-  font-weight:600;
-  font-size:14.5px;
-  transition:all .18s ease;
-  white-space:nowrap;
-}
-.btn-primary{background:var(--night); color:var(--white);}
-.btn-primary:hover{background:var(--night-dark); transform:translateY(-1px);}
-.btn-sand{background:var(--sand); color:var(--night-dark);}
-.btn-sand:hover{background:var(--sand-dark);}
-.btn-outline{background:transparent; color:var(--night); border:1.5px solid var(--night); }
-.btn-outline:hover{background:var(--night); color:var(--white);}
-.btn-ghost{background:transparent; color:var(--text-soft);}
-.btn-ghost:hover{color:var(--night-dark);}
-.btn-sm{padding:7px 13px; font-size:13px; border-radius:8px;}
-.btn-block{width:100%;}
-.btn-danger-outline{background:transparent; border:1.5px solid var(--danger); color:var(--danger);}
-.btn-danger-outline:hover{background:var(--danger); color:#fff;}
+      /* ---------- Buttons ---------- */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 11px 20px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 14.5px;
+        transition: all 0.18s ease;
+        white-space: nowrap;
+      }
+      .btn-primary {
+        background: var(--night);
+        color: var(--white);
+      }
+      .btn-primary:hover {
+        background: var(--night-dark);
+        transform: translateY(-1px);
+      }
+      .btn-sand {
+        background: var(--sand);
+        color: var(--night-dark);
+      }
+      .btn-sand:hover {
+        background: var(--sand-dark);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--night);
+        border: 1.5px solid var(--night);
+      }
+      .btn-outline:hover {
+        background: var(--night);
+        color: var(--white);
+      }
+      .btn-ghost {
+        background: transparent;
+        color: var(--text-soft);
+      }
+      .btn-ghost:hover {
+        color: var(--night-dark);
+      }
+      .btn-sm {
+        padding: 7px 13px;
+        font-size: 13px;
+        border-radius: 8px;
+      }
+      .btn-block {
+        width: 100%;
+      }
+      .btn-danger-outline {
+        background: transparent;
+        border: 1.5px solid var(--danger);
+        color: var(--danger);
+      }
+      .btn-danger-outline:hover {
+        background: var(--danger);
+        color: #fff;
+      }
 
-/* ---------- Topbar ---------- */
-#topbar{
-  position:sticky; top:0; z-index:200;
-  background:var(--white);
-  border-bottom:1px solid var(--line);
-  display:flex; align-items:center; justify-content:space-between;
-  padding:14px 32px;
-  gap:20px;
-}
-.logo{
-  display:flex; align-items:center; gap:9px;
-  font-family:'Fraunces',serif; font-weight:800; font-size:22px; color:var(--night-dark);
-  cursor:pointer;
-}
-.logo .roof-mark{width:26px; height:22px;}
-#topbar nav{display:flex; gap:6px; align-items:center;}
-#topbar nav a.navlink{
-  padding:9px 14px; border-radius:8px; font-weight:600; font-size:14.5px; color:var(--text-soft);
-  transition:all .15s ease;
-}
-#topbar nav a.navlink:hover{background:var(--cream-2); color:var(--night-dark);}
-#topbar nav a.navlink.active{color:var(--night-dark); background:var(--cream-2);}
-.topbar-actions{display:flex; align-items:center; gap:10px;}
-.user-chip{
-  display:flex; align-items:center; gap:9px;
-  padding:6px 12px 6px 6px; border-radius:30px; background:var(--cream-2); cursor:pointer;
-  border:1px solid var(--line);
-}
-.avatar{
-  width:32px; height:32px; border-radius:50%;
-  background:linear-gradient(135deg,var(--sand),var(--sand-dark));
-  display:flex; align-items:center; justify-content:center;
-  color:var(--night-dark); font-weight:700; font-size:13px;
-}
-.avatar.lg{width:64px; height:64px; font-size:22px;}
+      /* ---------- Topbar ---------- */
+      #topbar {
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        background: var(--white);
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 32px;
+        gap: 20px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-family: "Fraunces", serif;
+        font-weight: 800;
+        font-size: 22px;
+        color: var(--night-dark);
+        cursor: pointer;
+      }
+      .logo .roof-mark {
+        width: 26px;
+        height: 22px;
+      }
+      #topbar nav {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+      #topbar nav a.navlink {
+        padding: 9px 14px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 14.5px;
+        color: var(--text-soft);
+        transition: all 0.15s ease;
+      }
+      #topbar nav a.navlink:hover {
+        background: var(--cream-2);
+        color: var(--night-dark);
+      }
+      #topbar nav a.navlink.active {
+        color: var(--night-dark);
+        background: var(--cream-2);
+      }
+      .topbar-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .user-chip {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 6px 12px 6px 6px;
+        border-radius: 30px;
+        background: var(--cream-2);
+        cursor: pointer;
+        border: 1px solid var(--line);
+      }
+      .avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--sand), var(--sand-dark));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--night-dark);
+        font-weight: 700;
+        font-size: 13px;
+      }
+      .avatar.lg {
+        width: 64px;
+        height: 64px;
+        font-size: 22px;
+      }
 
-/* ---------- Shell w/ sidebar ---------- */
-#shell{display:flex; min-height:calc(100vh - 64px);}
-#sidebar{
-  width:236px; flex:none;
-  background:var(--night-dark);
-  color:#eadfcf;
-  padding:22px 14px;
-  display:flex; flex-direction:column; gap:2px;
-}
-#sidebar .side-title{
-  color:#a9bfc3; font-size:11px; text-transform:uppercase; letter-spacing:.09em;
-  padding:10px 12px 6px;
-  font-weight:700;
-}
-.side-link{
-  display:flex; align-items:center; gap:11px;
-  padding:10px 12px; border-radius:9px; font-weight:600; font-size:14.5px;
-  color:#d9e2e2;
-  transition:all .15s ease;
-}
-.side-link svg{width:18px; height:18px; flex:none; opacity:.85;}
-.side-link:hover{background:rgba(225,179,130,.12); color:#fff;}
-.side-link.active{background:var(--sand); color:var(--night-dark);}
-.side-link.active svg{opacity:1;}
-.side-link.logout{margin-top:auto;}
-#main{flex:1; padding:30px 34px; max-width:100%; overflow-x:hidden;}
-.page-shell-guest #sidebar{display:none;}
+      /* ---------- Shell w/ sidebar ---------- */
+      #shell {
+        display: flex;
+        min-height: calc(100vh - 64px);
+      }
+      #sidebar {
+        width: 236px;
+        flex: none;
+        background: var(--night-dark);
+        color: #eadfcf;
+        padding: 22px 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      #sidebar .side-title {
+        color: #a9bfc3;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.09em;
+        padding: 10px 12px 6px;
+        font-weight: 700;
+      }
+      .side-link {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 10px 12px;
+        border-radius: 9px;
+        font-weight: 600;
+        font-size: 14.5px;
+        color: #d9e2e2;
+        transition: all 0.15s ease;
+      }
+      .side-link svg {
+        width: 18px;
+        height: 18px;
+        flex: none;
+        opacity: 0.85;
+      }
+      .side-link:hover {
+        background: rgba(225, 179, 130, 0.12);
+        color: #fff;
+      }
+      .side-link.active {
+        background: var(--sand);
+        color: var(--night-dark);
+      }
+      .side-link.active svg {
+        opacity: 1;
+      }
+      .side-link.logout {
+        margin-top: auto;
+      }
+      #main {
+        flex: 1;
+        padding: 30px 34px;
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+      .page-shell-guest #sidebar {
+        display: none;
+      }
 
-/* ---------- Generic layout helpers ---------- */
-.page{display:none; animation:fadeIn .25s ease;}
-.page.active{display:block;}
-@keyframes fadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
-.container{max-width:1180px; margin:0 auto; padding:0 32px;}
-.section-head{display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:20px; gap:16px; flex-wrap:wrap;}
-.section-head h2{font-size:24px;}
-.eyebrow{
-  display:inline-block; font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
-  color:var(--sand-dark); margin-bottom:8px;
-}
-.card{background:var(--white); border-radius:var(--radius); border:1px solid var(--line); box-shadow:var(--shadow);}
-.grid{display:grid; gap:20px;}
-.grid-3{grid-template-columns:repeat(3,1fr);}
-.grid-2{grid-template-columns:repeat(2,1fr);}
-@media(max-width:1000px){.grid-3{grid-template-columns:repeat(2,1fr);} }
-@media(max-width:680px){.grid-3,.grid-2{grid-template-columns:1fr;}}
+      /* ---------- Generic layout helpers ---------- */
+      .page {
+        display: none;
+        animation: fadeIn 0.25s ease;
+      }
+      .page.active {
+        display: block;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .container {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 32px;
+      }
+      .section-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .section-head h2 {
+        font-size: 24px;
+      }
+      .eyebrow {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--sand-dark);
+        margin-bottom: 8px;
+      }
+      .card {
+        background: var(--white);
+        border-radius: var(--radius);
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+      .grid {
+        display: grid;
+        gap: 20px;
+      }
+      .grid-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      .grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @media (max-width: 1000px) {
+        .grid-3 {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 680px) {
+        .grid-3,
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+      }
 
-/* ---------- Hero ---------- */
-.hero{
-  background:linear-gradient(120deg, var(--night-dark) 0%, var(--night) 65%);
-  border-radius:22px;
-  padding:52px 44px;
-  color:#fff;
-  display:grid; grid-template-columns:1.15fr 1fr; gap:36px; align-items:center;
-  overflow:hidden;
-  position:relative;
-  margin:26px 0 40px;
-}
-.hero:before{
-  content:'';
-  position:absolute; right:-60px; top:-60px; width:280px; height:280px;
-  background:radial-gradient(circle,var(--sand) 0%, transparent 70%);
-  opacity:.25;
-}
-.hero h1{color:#fff; font-size:41px; line-height:1.12; margin-bottom:14px; max-width:520px;}
-.hero p{color:#cfe0e0; font-size:15.5px; line-height:1.6; max-width:480px; margin-bottom:24px;}
-.search-bar{
-  display:flex; background:#fff; border-radius:12px; padding:6px; gap:6px; max-width:520px;
-  box-shadow:var(--shadow-lg);
-}
-.search-bar input{flex:1; border:none; padding:11px 14px; font-size:14.5px; border-radius:8px; outline:none; color:var(--text);}
-.hero-illustration{
-  height:230px; border-radius:16px;
-  background:linear-gradient(160deg,var(--sand) 0%, var(--sand-dark) 100%);
-  position:relative; overflow:hidden;
-  display:flex; align-items:flex-end; justify-content:center;
-}
-.hero-illustration svg{width:78%; }
+      /* ---------- Hero ---------- */
+      .hero {
+        background: linear-gradient(
+          120deg,
+          var(--night-dark) 0%,
+          var(--night) 65%
+        );
+        border-radius: 22px;
+        padding: 52px 44px;
+        color: #fff;
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+        gap: 36px;
+        align-items: center;
+        overflow: hidden;
+        position: relative;
+        margin: 26px 0 40px;
+      }
+      .hero:before {
+        content: "";
+        position: absolute;
+        right: -60px;
+        top: -60px;
+        width: 280px;
+        height: 280px;
+        background: radial-gradient(circle, var(--sand) 0%, transparent 70%);
+        opacity: 0.25;
+      }
+      .hero h1 {
+        color: #fff;
+        font-size: 41px;
+        line-height: 1.12;
+        margin-bottom: 14px;
+        max-width: 520px;
+      }
+      .hero p {
+        color: #cfe0e0;
+        font-size: 15.5px;
+        line-height: 1.6;
+        max-width: 480px;
+        margin-bottom: 24px;
+      }
+      .search-bar {
+        display: flex;
+        background: #fff;
+        border-radius: 12px;
+        padding: 6px;
+        gap: 6px;
+        max-width: 520px;
+        box-shadow: var(--shadow-lg);
+      }
+      .search-bar input {
+        flex: 1;
+        border: none;
+        padding: 11px 14px;
+        font-size: 14.5px;
+        border-radius: 8px;
+        outline: none;
+        color: var(--text);
+      }
+      .hero-illustration {
+        height: 230px;
+        border-radius: 16px;
+        background: linear-gradient(
+          160deg,
+          var(--sand) 0%,
+          var(--sand-dark) 100%
+        );
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      }
+      .hero-illustration svg {
+        width: 78%;
+      }
 
-/* ---------- Kos card ---------- */
-.kos-card{
-  background:var(--white); border-radius:var(--radius); overflow:hidden; border:1px solid var(--line);
-  box-shadow:var(--shadow); transition:transform .18s ease, box-shadow .18s ease; position:relative;
-}
-.kos-card:hover{transform:translateY(-3px); box-shadow:var(--shadow-lg);}
-.kos-photo{
-  height:150px; position:relative;
-  background:linear-gradient(150deg,var(--sand-dark),var(--sand));
-  display:flex; align-items:flex-end; justify-content:center; overflow:hidden;
-}
-.kos-photo svg{width:64%; opacity:.92;}
-.kos-photo .status-badge{
-  position:absolute; top:10px; left:10px; font-size:11px; font-weight:700; padding:4px 10px; border-radius:20px;
-}
-.status-badge.tersedia{background:var(--ok-bg); color:var(--ok);}
-.status-badge.penuh{background:var(--danger-bg); color:var(--danger);}
-.fav-btn{
-  position:absolute; top:10px; right:10px; width:32px; height:32px; border-radius:50%;
-  background:rgba(255,255,255,.92); display:flex; align-items:center; justify-content:center;
-  transition:all .15s ease;
-}
-.fav-btn svg{width:16px; height:16px; stroke:var(--night-dark); fill:none; transition:all .15s;}
-.fav-btn.active svg{fill:var(--danger); stroke:var(--danger);}
-.kos-body{padding:15px 16px 17px;}
-.kos-body .kname{font-family:'Fraunces',serif; font-weight:600; font-size:16.5px; color:var(--night-dark); margin-bottom:3px;}
-.kos-body .kaddr{font-size:12.5px; color:var(--text-soft); margin-bottom:9px; display:flex; gap:5px; align-items:flex-start;}
-.kos-body .kaddr svg{width:13px; height:13px; flex:none; margin-top:1px; opacity:.7;}
-.kprice{font-weight:800; color:var(--night); font-size:16px; margin-bottom:8px;}
-.kprice span{font-weight:500; font-size:12px; color:var(--text-soft);}
-.krating{display:flex; align-items:center; gap:5px; font-size:12.5px; color:var(--text-soft); margin-bottom:10px; font-weight:600;}
-.krating svg{width:13px; height:13px; fill:var(--sand-dark); stroke:none;}
-.kfacilities{display:flex; flex-wrap:wrap; gap:6px;}
-.fac-tag{font-size:10.5px; font-weight:600; color:var(--night); background:var(--cream-2); padding:3px 8px; border-radius:6px;}
+      .hero-illustration img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        border-radius:16px;
+      }
 
-/* ---------- Forms ---------- */
-.field{margin-bottom:16px;}
-.field label{display:block; font-size:13.5px; font-weight:600; color:var(--night-dark); margin-bottom:7px;}
-.field input, .field select, .field textarea{
-  width:100%; padding:11px 13px; border:1.5px solid var(--line); border-radius:9px; font-size:14px; outline:none;
-  transition:border-color .15s ease; background:var(--white); color:var(--text);
-}
-.field input:focus, .field select:focus, .field textarea:focus{border-color:var(--night);}
-.pw-wrap{position:relative;}
-.pw-wrap svg{position:absolute; right:13px; top:50%; transform:translateY(-50%); width:17px; height:17px; opacity:.55; cursor:pointer;}
+      /* ---------- Kos card ---------- */
+      .kos-card {
+        background: var(--white);
+        border-radius: var(--radius);
+        overflow: hidden;
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+        transition:
+          transform 0.18s ease,
+          box-shadow 0.18s ease;
+        position: relative;
+      }
+      .kos-card:hover {
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-lg);
+      }
+      .kos-photo {
+        height: 150px;
+        position: relative;
+        background: linear-gradient(150deg, var(--sand-dark), var(--sand));
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .kos-photo svg {
+        width: 64%;
+        opacity: 0.92;
+      }
+      .kos-photo .status-badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 20px;
+      }
+      .status-badge.tersedia {
+        background: var(--ok-bg);
+        color: var(--ok);
+      }
+      .status-badge.penuh {
+        background: var(--danger-bg);
+        color: var(--danger);
+      }
+      .fav-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.92);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.15s ease;
+      }
+      .fav-btn svg {
+        width: 16px;
+        height: 16px;
+        stroke: var(--night-dark);
+        fill: none;
+        transition: all 0.15s;
+      }
+      .fav-btn.active svg {
+        fill: var(--danger);
+        stroke: var(--danger);
+      }
+      .kos-body {
+        padding: 15px 16px 17px;
+      }
+      .kos-body .kname {
+        font-family: "Fraunces", serif;
+        font-weight: 600;
+        font-size: 16.5px;
+        color: var(--night-dark);
+        margin-bottom: 3px;
+      }
+      .kos-body .kaddr {
+        font-size: 12.5px;
+        color: var(--text-soft);
+        margin-bottom: 9px;
+        display: flex;
+        gap: 5px;
+        align-items: flex-start;
+      }
+      .kos-body .kaddr svg {
+        width: 13px;
+        height: 13px;
+        flex: none;
+        margin-top: 1px;
+        opacity: 0.7;
+      }
+      .kprice {
+        font-weight: 800;
+        color: var(--night);
+        font-size: 16px;
+        margin-bottom: 8px;
+      }
+      .kprice span {
+        font-weight: 500;
+        font-size: 12px;
+        color: var(--text-soft);
+      }
+      .krating {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 12.5px;
+        color: var(--text-soft);
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+      .krating svg {
+        width: 13px;
+        height: 13px;
+        fill: var(--sand-dark);
+        stroke: none;
+      }
+      .kfacilities {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .fac-tag {
+        font-size: 10.5px;
+        font-weight: 600;
+        color: var(--night);
+        background: var(--cream-2);
+        padding: 3px 8px;
+        border-radius: 6px;
+      }
 
-.auth-wrap{max-width:440px; margin:46px auto; padding:0 20px;}
-.auth-card{padding:34px 32px;}
-.auth-card h2{text-align:center; font-size:23px; margin-bottom:4px;}
-.auth-sub{text-align:center; color:var(--text-soft); font-size:13.5px; margin-bottom:24px;}
-.role-toggle{display:flex; gap:10px; margin-bottom:22px;}
-.role-opt{
-  flex:1; border:1.5px solid var(--line); border-radius:10px; padding:13px 10px; text-align:center; font-size:13px; font-weight:700;
-  color:var(--text-soft); transition:all .15s ease; display:flex; flex-direction:column; align-items:center; gap:6px;
-}
-.role-opt svg{width:20px; height:20px;}
-.role-opt.active{border-color:var(--night); background:var(--cream-2); color:var(--night-dark);}
-.divider-or{display:flex; align-items:center; gap:12px; color:var(--text-soft); font-size:12.5px; margin:18px 0;}
-.divider-or:before,.divider-or:after{content:''; flex:1; height:1px; background:var(--line);}
-.social-row{display:flex; gap:10px;}
-.social-btn{
-  flex:1; display:flex; align-items:center; justify-content:center; gap:8px; padding:10px; border:1.5px solid var(--line);
-  border-radius:9px; font-weight:600; font-size:13.5px; color:var(--text);
-}
-.social-btn:hover{border-color:var(--sand-dark); background:var(--cream);}
-.auth-foot{text-align:center; font-size:13.5px; color:var(--text-soft); margin-top:18px;}
-.auth-foot b{color:var(--night); cursor:pointer;}
+      /* ---------- Forms ---------- */
+      .field {
+        margin-bottom: 16px;
+      }
+      .field label {
+        display: block;
+        font-size: 13.5px;
+        font-weight: 600;
+        color: var(--night-dark);
+        margin-bottom: 7px;
+      }
+      .field input,
+      .field select,
+      .field textarea {
+        width: 100%;
+        padding: 11px 13px;
+        border: 1.5px solid var(--line);
+        border-radius: 9px;
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.15s ease;
+        background: var(--white);
+        color: var(--text);
+      }
+      .field input:focus,
+      .field select:focus,
+      .field textarea:focus {
+        border-color: var(--night);
+      }
+      .pw-wrap {
+        position: relative;
+      }
+      .pw-wrap svg {
+        position: absolute;
+        right: 13px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 17px;
+        height: 17px;
+        opacity: 0.55;
+        cursor: pointer;
+      }
 
-/* ---------- Filter panel / search page ---------- */
-.search-layout{display:grid; grid-template-columns:260px 1fr; gap:26px; align-items:flex-start;}
-.filter-panel{padding:20px;}
-.filter-panel h3{font-size:16px; margin-bottom:16px;}
-.filter-group{margin-bottom:18px;}
-.filter-group>label{display:block; font-size:12.5px; font-weight:700; color:var(--night-dark); text-transform:uppercase; letter-spacing:.04em; margin-bottom:9px;}
-.range-row{display:flex; gap:8px; align-items:center;}
-.range-row input{width:100%;}
-.chk-row{display:flex; align-items:center; gap:9px; font-size:13.5px; padding:5px 0; color:var(--text);}
-.chk-row input{accent-color:var(--night); width:16px; height:16px;}
-.result-top{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:10px;}
-.result-search{
-  display:flex; align-items:center; gap:8px; background:var(--white); border:1.5px solid var(--line); border-radius:10px;
-  padding:9px 14px; flex:1; max-width:420px;
-}
-.result-search input{border:none; outline:none; flex:1; font-size:13.5px;}
-.result-search svg{width:16px; height:16px; opacity:.55;}
+      .auth-wrap {
+        max-width: 440px;
+        margin: 24px auto;
+        padding: 0 20px;
+      }
+      .auth-card {
+        padding: 26px 30px;
+      }
+      .auth-card h2 {
+        text-align: center;
+        font-size: 21px;
+        margin-bottom: 3px;
+      }
+      .auth-sub {
+        text-align: center;
+        color: var(--text-soft);
+        font-size: 13.5px;
+        margin-bottom: 18px;
+      }
+      .role-toggle {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+      .role-opt {
+        flex: 1;
+        border: 1.5px solid var(--line);
+        border-radius: 10px;
+        padding: 10px 10px;
+        text-align: center;
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--text-soft);
+        transition: all 0.15s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+      }
+      .role-opt svg {
+        width: 20px;
+        height: 20px;
+      }
+      .role-opt.active {
+        border-color: var(--night);
+        background: var(--cream-2);
+        color: var(--night-dark);
+      }
+      .divider-or {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--text-soft);
+        font-size: 12.5px;
+        margin: 14px 0;
+      }
+      .divider-or:before,
+      .divider-or:after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--line);
+      }
+      .social-row {
+        display: flex;
+        gap: 10px;
+      }
+      .social-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px;
+        border: 1.5px solid var(--line);
+        border-radius: 9px;
+        font-weight: 600;
+        font-size: 13.5px;
+        color: var(--text);
+      }
+      .social-btn:hover {
+        border-color: var(--sand-dark);
+        background: var(--cream);
+      }
+      .auth-foot {
+        text-align: center;
+        font-size: 13.5px;
+        color: var(--text-soft);
+        margin-top: 14px;
+      }
+      .auth-foot b {
+        color: var(--night);
+        cursor: pointer;
+      }
+      .auth-card .field {
+        margin-bottom: 13px;
+      }
 
-/* ---------- Detail page ---------- */
-.detail-layout{display:grid; grid-template-columns:1.6fr 1fr; gap:28px; align-items:flex-start;}
-.detail-hero-photo{
-  height:300px; border-radius:16px; background:linear-gradient(150deg,var(--sand-dark),var(--sand));
-  position:relative; display:flex; align-items:flex-end; justify-content:center; overflow:hidden; margin-bottom:14px;
-}
-.detail-hero-photo svg{width:46%;}
-.thumb-row{display:grid; grid-template-columns:repeat(4,1fr); gap:10px;}
-.thumb{height:64px; border-radius:9px; background:linear-gradient(150deg,var(--cream-2),var(--sand));}
-.info-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px 28px; margin:18px 0;}
-.info-item{display:flex; align-items:center; gap:10px; font-size:13.5px;}
-.info-item svg{width:17px; height:17px; color:var(--night); flex:none;}
-.info-item b{color:var(--night-dark);}
-.review-item{display:flex; gap:12px; padding:16px 0; border-top:1px solid var(--line);}
-.review-item:first-child{border-top:none;}
-.stars-row{display:flex; gap:2px;}
-.stars-row svg{width:13px; height:13px; fill:var(--sand-dark);}
-.stars-row svg.empty{fill:var(--line);}
-.map-box{
-  height:150px; border-radius:12px; margin-top:14px; position:relative; overflow:hidden;
-  background:
-    repeating-linear-gradient(0deg, var(--cream-2), var(--cream-2) 1px, var(--white) 1px, var(--white) 26px),
-    repeating-linear-gradient(90deg, var(--cream-2), var(--cream-2) 1px, transparent 1px, transparent 26px);
-}
-.map-pin{position:absolute; left:44%; top:38%; width:26px; height:26px; color:var(--danger);}
-.sticky-book{position:sticky; top:84px;}
+      /* ---------- Filter panel / search page ---------- */
+      .search-layout {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 26px;
+        align-items: flex-start;
+      }
+      .filter-panel {
+        padding: 18px;
+      }
+      .filter-panel h3 {
+        font-size: 16px;
+        margin-bottom: 12px;
+      }
+      .filter-group {
+        margin-bottom: 14px;
+      }
+      .filter-group > label {
+        display: block;
+        font-size: 12.5px;
+        font-weight: 700;
+        color: var(--night-dark);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin-bottom: 9px;
+      }
+      .range-row {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .range-row input {
+        width: 100%;
+      }
+      .chk-row {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-size: 13.5px;
+        padding: 5px 0;
+        color: var(--text);
+      }
+      .chk-row input {
+        accent-color: var(--night);
+        width: 16px;
+        height: 16px;
+      }
+      .result-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .result-search {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--white);
+        border: 1.5px solid var(--line);
+        border-radius: 10px;
+        padding: 9px 14px;
+        flex: 1;
+        max-width: 420px;
+      }
+      .result-search input {
+        border: none;
+        outline: none;
+        flex: 1;
+        font-size: 13.5px;
+      }
+      .result-search svg {
+        width: 16px;
+        height: 16px;
+        opacity: 0.55;
+      }
 
-/* ---------- Table ---------- */
-table.data-table{width:100%; border-collapse:collapse; font-size:13.5px;}
-table.data-table th{
-  text-align:left; padding:12px 14px; background:var(--cream-2); color:var(--night-dark); font-size:12px;
-  text-transform:uppercase; letter-spacing:.04em; font-weight:700;
-}
-table.data-table td{padding:12px 14px; border-bottom:1px solid var(--line); vertical-align:middle;}
-table.data-table tr:last-child td{border-bottom:none;}
-.thumb-sm{width:46px; height:36px; border-radius:7px; background:linear-gradient(150deg,var(--sand-dark),var(--sand)); flex:none;}
-.row-flex{display:flex; align-items:center; gap:10px;}
+      /* ---------- Detail page ---------- */
+      .detail-layout {
+        display: grid;
+        grid-template-columns: 1.6fr 1fr;
+        gap: 28px;
+        align-items: flex-start;
+      }
+      .detail-hero-photo {
+        height: 300px;
+        border-radius: 16px;
+        background: linear-gradient(150deg, var(--sand-dark), var(--sand));
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        overflow: hidden;
+        margin-bottom: 14px;
+      }
+      .detail-hero-photo svg {
+        width: 46%;
+      }
+      .thumb-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+      .thumb {
+        height: 64px;
+        border-radius: 9px;
+        background: linear-gradient(150deg, var(--cream-2), var(--sand));
+      }
+      .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px 28px;
+        margin: 18px 0;
+      }
+      .info-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 13.5px;
+      }
+      .info-item svg {
+        width: 17px;
+        height: 17px;
+        color: var(--night);
+        flex: none;
+      }
+      .info-item b {
+        color: var(--night-dark);
+      }
+      .review-item {
+        display: flex;
+        gap: 12px;
+        padding: 16px 0;
+        border-top: 1px solid var(--line);
+      }
+      .review-item:first-child {
+        border-top: none;
+      }
+      .stars-row {
+        display: flex;
+        gap: 2px;
+      }
+      .stars-row svg {
+        width: 13px;
+        height: 13px;
+        fill: var(--sand-dark);
+      }
+      .stars-row svg.empty {
+        fill: var(--line);
+      }
+      .map-box {
+        height: 150px;
+        border-radius: 12px;
+        margin-top: 14px;
+        position: relative;
+        overflow: hidden;
+        background:
+          repeating-linear-gradient(
+            0deg,
+            var(--cream-2),
+            var(--cream-2) 1px,
+            var(--white) 1px,
+            var(--white) 26px
+          ),
+          repeating-linear-gradient(
+            90deg,
+            var(--cream-2),
+            var(--cream-2) 1px,
+            transparent 1px,
+            transparent 26px
+          );
+      }
+      .map-pin {
+        position: absolute;
+        left: 44%;
+        top: 38%;
+        width: 26px;
+        height: 26px;
+        color: var(--danger);
+      }
+      .sticky-book {
+        position: sticky;
+        top: 84px;
+      }
 
-/* ---------- Tabs ---------- */
-.tab-row{display:flex; gap:4px; background:var(--cream-2); padding:4px; border-radius:10px; width:fit-content; margin-bottom:18px;}
-.tab-item{padding:8px 18px; border-radius:8px; font-weight:600; font-size:13.5px; color:var(--text-soft);}
-.tab-item.active{background:var(--white); color:var(--night-dark); box-shadow:var(--shadow);}
+      /* ---------- Table ---------- */
+      table.data-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13.5px;
+      }
+      table.data-table th {
+        text-align: left;
+        padding: 12px 14px;
+        background: var(--cream-2);
+        color: var(--night-dark);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        font-weight: 700;
+      }
+      table.data-table td {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--line);
+        vertical-align: middle;
+      }
+      table.data-table tr:last-child td {
+        border-bottom: none;
+      }
+      .thumb-sm {
+        width: 46px;
+        height: 36px;
+        border-radius: 7px;
+        background: linear-gradient(150deg, var(--sand-dark), var(--sand));
+        flex: none;
+      }
+      .row-flex {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
 
-/* ---------- Stat cards ---------- */
-.stat-card{padding:18px 20px; display:flex; align-items:center; gap:14px;}
-.stat-icon{width:44px; height:44px; border-radius:12px; background:var(--cream-2); display:flex; align-items:center; justify-content:center; flex:none;}
-.stat-icon svg{width:21px; height:21px; color:var(--night);}
-.stat-num{font-family:'Fraunces',serif; font-size:25px; font-weight:700; color:var(--night-dark);}
-.stat-label{font-size:12px; color:var(--text-soft); font-weight:600;}
+      /* ---------- Tabs ---------- */
+      .tab-row {
+        display: flex;
+        gap: 4px;
+        background: var(--cream-2);
+        padding: 4px;
+        border-radius: 10px;
+        width: fit-content;
+        margin-bottom: 18px;
+      }
+      .tab-item {
+        padding: 8px 18px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 13.5px;
+        color: var(--text-soft);
+      }
+      .tab-item.active {
+        background: var(--white);
+        color: var(--night-dark);
+        box-shadow: var(--shadow);
+      }
 
-/* ---------- Booking / notif items ---------- */
-.booking-item{display:flex; gap:14px; padding:16px; align-items:center;}
-.booking-item + .booking-item{border-top:1px solid var(--line);}
-.badge{font-size:11px; font-weight:700; padding:4px 10px; border-radius:20px;}
-.badge.menunggu{background:var(--warn-bg); color:var(--warn);}
-.badge.disetujui, .badge.ditolak-x{background:var(--ok-bg); color:var(--ok);}
-.badge.ditolak{background:var(--danger-bg); color:var(--danger);}
-.badge.selesai{background:var(--cream-2); color:var(--night-dark);}
-.notif-item{display:flex; gap:12px; padding:14px 16px; align-items:flex-start;}
-.notif-item + .notif-item{border-top:1px solid var(--line);}
-.notif-dot{width:9px; height:9px; border-radius:50%; background:var(--sand-dark); flex:none; margin-top:6px;}
-.notif-item.read .notif-dot{background:var(--line);}
-.notif-item.read{opacity:.65;}
+      /* ---------- Stat cards ---------- */
+      .stat-card {
+        padding: 18px 20px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .stat-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: var(--cream-2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+      }
+      .stat-icon svg {
+        width: 21px;
+        height: 21px;
+        color: var(--night);
+      }
+      .stat-num {
+        font-family: "Fraunces", serif;
+        font-size: 25px;
+        font-weight: 700;
+        color: var(--night-dark);
+      }
+      .stat-label {
+        font-size: 12px;
+        color: var(--text-soft);
+        font-weight: 600;
+      }
 
-/* ---------- chart mock ---------- */
-.mini-chart{height:130px; display:flex; align-items:flex-end; gap:8px; padding-top:10px;}
-.mini-chart .bar{flex:1; background:linear-gradient(180deg,var(--sand),var(--sand-dark)); border-radius:6px 6px 0 0;}
+      /* ---------- Booking / notif items ---------- */
+      .booking-item {
+        display: flex;
+        gap: 14px;
+        padding: 16px;
+        align-items: center;
+      }
+      .booking-item + .booking-item {
+        border-top: 1px solid var(--line);
+      }
+      .badge {
+        font-size: 11px;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 20px;
+      }
+      .badge.menunggu {
+        background: var(--warn-bg);
+        color: var(--warn);
+      }
+      .badge.disetujui,
+      .badge.ditolak-x {
+        background: var(--ok-bg);
+        color: var(--ok);
+      }
+      .badge.ditolak {
+        background: var(--danger-bg);
+        color: var(--danger);
+      }
+      .badge.selesai {
+        background: var(--cream-2);
+        color: var(--night-dark);
+      }
+      .notif-item {
+        display: flex;
+        gap: 12px;
+        padding: 14px 16px;
+        align-items: flex-start;
+      }
+      .notif-item + .notif-item {
+        border-top: 1px solid var(--line);
+      }
+      .notif-dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--sand-dark);
+        flex: none;
+        margin-top: 6px;
+      }
+      .notif-item.read .notif-dot {
+        background: var(--line);
+      }
+      .notif-item.read {
+        opacity: 0.65;
+      }
 
-.toast-wrap{position:fixed; bottom:24px; right:24px; z-index:999; display:flex; flex-direction:column; gap:10px;}
-.toast{
-  background:var(--night-dark); color:#fff; padding:13px 20px; border-radius:10px; font-size:13.5px; font-weight:600;
-  box-shadow:var(--shadow-lg); display:flex; align-items:center; gap:10px; animation:toastIn .25s ease;
-}
-.toast svg{width:16px; height:16px; color:var(--sand);}
-@keyframes toastIn{from{opacity:0; transform:translateX(20px);} to{opacity:1; transform:translateX(0);}}
+      /* ---------- chart mock ---------- */
+      .mini-chart {
+        height: 130px;
+        display: flex;
+        align-items: flex-end;
+        gap: 8px;
+        padding-top: 10px;
+      }
+      .mini-chart .bar {
+        flex: 1;
+        background: linear-gradient(180deg, var(--sand), var(--sand-dark));
+        border-radius: 6px 6px 0 0;
+      }
 
-.pill-link{font-size:13.5px; font-weight:700; color:var(--night); }
-.pill-link:hover{text-decoration:underline;}
-.helper-row{display:flex; justify-content:space-between; align-items:center; font-size:12.5px; margin-top:-8px; margin-bottom:16px;}
+      .toast-wrap {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 999;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .toast {
+        background: var(--night-dark);
+        color: #fff;
+        padding: 13px 20px;
+        border-radius: 10px;
+        font-size: 13.5px;
+        font-weight: 600;
+        box-shadow: var(--shadow-lg);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        animation: toastIn 0.25s ease;
+      }
+      .toast svg {
+        width: 16px;
+        height: 16px;
+        color: var(--sand);
+      }
+      @keyframes toastIn {
+        from {
+          opacity: 0;
+          transform: translateX(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
 
-/* ---------- Tentang Kami ---------- */
-.about-hero{
-  background:linear-gradient(120deg, var(--night-dark) 0%, var(--night) 65%);
-  border-radius:22px; padding:52px 44px; color:#fff; text-align:center; margin:26px 0 40px; position:relative; overflow:hidden;
-}
-.about-hero:before{
-  content:''; position:absolute; left:-50px; bottom:-70px; width:260px; height:260px;
-  background:radial-gradient(circle,var(--sand) 0%, transparent 70%); opacity:.22;
-}
-.about-hero h1{color:#fff; font-size:34px; max-width:640px; margin:0 auto 12px;}
-.about-hero p{color:#cfe0e0; font-size:15px; max-width:560px; margin:0 auto; line-height:1.65;}
-.value-card{padding:22px; text-align:left;}
-.value-card .stat-icon{margin-bottom:12px;}
-.story-block{display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:center; margin:44px 0;}
-.story-illustration{
-  height:220px; border-radius:16px; background:linear-gradient(150deg,var(--sand),var(--sand-dark));
-  display:flex; align-items:center; justify-content:center;
-}
-.story-illustration svg{width:52%;}
+      .pill-link {
+        font-size: 13.5px;
+        font-weight: 700;
+        color: var(--night);
+      }
+      .pill-link:hover {
+        text-decoration: underline;
+      }
+      .helper-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12.5px;
+        margin-top: -8px;
+        margin-bottom: 16px;
+      }
 
-/* ---------- Bantuan / FAQ ---------- */
-.faq-search{
-  display:flex; align-items:center; gap:9px; background:var(--white); border:1.5px solid var(--line); border-radius:12px;
-  padding:12px 16px; max-width:520px; margin:0 auto 34px;
-}
-.faq-search input{border:none; outline:none; flex:1; font-size:14.5px;}
-.faq-search svg{width:17px; height:17px; opacity:.55;}
-.faq-category{font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--sand-dark); margin:26px 0 12px;}
-.faq-category:first-of-type{margin-top:0;}
-.accordion-item{border:1px solid var(--line); border-radius:12px; margin-bottom:10px; overflow:hidden; background:var(--white);}
-.accordion-head{
-  display:flex; align-items:center; justify-content:space-between; gap:14px; padding:16px 18px; cursor:pointer; user-select:none;
-}
-.accordion-head span{font-weight:600; font-size:14.5px; color:var(--night-dark);}
-.accordion-head svg{width:18px; height:18px; flex:none; color:var(--night); transition:transform .2s ease;}
-.accordion-item.open .accordion-head svg{transform:rotate(45deg);}
-.accordion-body{max-height:0; overflow:hidden; transition:max-height .25s ease;}
-.accordion-item.open .accordion-body{max-height:240px;}
-.accordion-body p{padding:0 18px 16px; font-size:13.5px; color:var(--text-soft); line-height:1.6;}
-.help-contact{
-  display:flex; align-items:center; justify-content:space-between; gap:16px; padding:24px 28px; margin-top:36px; flex-wrap:wrap;
-  background:var(--cream-2); border-radius:16px;
-}
+      /* ---------- Tentang Kami ---------- */
+      .about-hero {
+        background: linear-gradient(
+          120deg,
+          var(--night-dark) 0%,
+          var(--night) 65%
+        );
+        border-radius: 22px;
+        padding: 34px 40px;
+        color: #fff;
+        text-align: center;
+        margin: 18px 0 26px;
+        position: relative;
+        overflow: hidden;
+      }
+      .about-hero:before {
+        content: "";
+        position: absolute;
+        left: -50px;
+        bottom: -70px;
+        width: 260px;
+        height: 260px;
+        background: radial-gradient(circle, var(--sand) 0%, transparent 70%);
+        opacity: 0.22;
+      }
+      .about-hero h1 {
+        color: #fff;
+        font-size: 28px;
+        max-width: 620px;
+        margin: 0 auto 10px;
+      }
+      .about-hero p {
+        color: #cfe0e0;
+        font-size: 14px;
+        max-width: 540px;
+        margin: 0 auto;
+        line-height: 1.55;
+      }
+      .value-card {
+        padding: 18px;
+        text-align: left;
+      }
+      .value-card .stat-icon {
+        margin-bottom: 8px;
+      }
+      .story-block {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px;
+        align-items: center;
+        margin: 28px 0;
+      }
+      .story-illustration {
+        height: 170px;
+        border-radius: 16px;
+        background: linear-gradient(150deg, var(--sand), var(--sand-dark));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .story-illustration svg {
+        width: 52%;
+      }
 
-@media(max-width:900px){
-  #sidebar{display:none;}
-  .hero{grid-template-columns:1fr;}
-  .detail-layout, .search-layout{grid-template-columns:1fr;}
-  #topbar nav{display:none;}
-}
-</style>
-</head>
-<body>
+      /* ---------- Bantuan / FAQ ---------- */
+      .faq-search {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        background: var(--white);
+        border: 1.5px solid var(--line);
+        border-radius: 12px;
+        padding: 11px 16px;
+        max-width: 520px;
+        margin: 0 auto 22px;
+      }
+      .faq-search input {
+        border: none;
+        outline: none;
+        flex: 1;
+        font-size: 14.5px;
+      }
+      .faq-search svg {
+        width: 17px;
+        height: 17px;
+        opacity: 0.55;
+      }
+      .faq-category {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--sand-dark);
+        margin: 18px 0 10px;
+      }
+      .faq-category:first-of-type {
+        margin-top: 0;
+      }
+      .accordion-item {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        margin-bottom: 8px;
+        overflow: hidden;
+        background: var(--white);
+      }
+      .accordion-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 13px 18px;
+        cursor: pointer;
+        user-select: none;
+      }
+      .accordion-head span {
+        font-weight: 600;
+        font-size: 14.5px;
+        color: var(--night-dark);
+      }
+      .accordion-head svg {
+        width: 18px;
+        height: 18px;
+        flex: none;
+        color: var(--night);
+        transition: transform 0.2s ease;
+      }
+      .accordion-item.open .accordion-head svg {
+        transform: rotate(45deg);
+      }
+      .accordion-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.25s ease;
+      }
+      .accordion-item.open .accordion-body {
+        max-height: 240px;
+      }
+      .accordion-body p {
+        padding: 0 18px 16px;
+        font-size: 13.5px;
+        color: var(--text-soft);
+        line-height: 1.6;
+      }
+      .help-contact {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 18px 24px;
+        margin-top: 22px;
+        flex-wrap: wrap;
+        background: var(--cream-2);
+        border-radius: 16px;
+      }
 
-<!-- ============ TOPBAR ============ -->
-<div id="topbar">
-  <div class="logo" onclick="go('beranda')">
-    <span class="roof-mark">
-      <svg viewBox="0 0 24 20" fill="none"><path d="M2 10L12 2L22 10" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9V18H19V9" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/></svg>
-    </span>
-    KOSKU
-  </div>
-  <nav id="guestNav">
-    <a class="navlink" data-page="beranda" onclick="go('beranda')">Beranda</a>
-    <a class="navlink" data-page="search" onclick="go('search')">Cari Kos</a>
-    <a class="navlink" data-page="tentang" onclick="go('tentang')">Tentang Kami</a>
-    <a class="navlink" data-page="bantuan" onclick="go('bantuan')">Bantuan</a>
-  </nav>
-  <div class="topbar-actions" id="topbarActions">
-    <button class="btn btn-ghost btn-sm" onclick="go('login')">Login</button>
-    <button class="btn btn-primary btn-sm" onclick="go('register')">Daftar</button>
-  </div>
-</div>
-
-<!-- ============ SHELL ============ -->
-<div id="shell" class="page-shell-guest">
-  <aside id="sidebar"></aside>
-  <main id="main">
-
-    <!-- ============================================================ -->
-    <!-- 1. BERANDA -->
-    <!-- ============================================================ -->
-    <section class="page active" id="page-beranda">
-      <div class="container">
-        <div class="hero">
-          <div>
-            <span class="eyebrow" style="color:var(--sand)">Platform Kos #1 untuk Mahasiswa</span>
-            <h1>Cari Kos Terbaik Sesuai Kebutuhanmu</h1>
-            <p>Temukan kos atau kontrakan aman, nyaman, dan sesuai budget di sekitar kampusmu. Ribuan pilihan, booking survei online, tanpa ribet.</p>
-            <div class="search-bar">
-              <input type="text" placeholder="Cari lokasi, nama kos, atau fasilitas...">
-              <button class="btn btn-sand" onclick="go('search')">Cari Sekarang</button>
-            </div>
-          </div>
-          <div class="hero-illustration">
-            <svg viewBox="0 0 200 160" fill="none">
-              <path d="M20 90L100 25L180 90" stroke="#12343b" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
-              <rect x="38" y="88" width="124" height="62" rx="4" fill="#fffdfb" stroke="#12343b" stroke-width="6"/>
-              <rect x="60" y="106" width="26" height="26" fill="#e1b382"/>
-              <rect x="114" y="106" width="26" height="26" fill="#c89666"/>
-              <rect x="88" y="128" width="24" height="22" fill="#12343b"/>
-            </svg>
-          </div>
-        </div>
-
-        <div class="section-head">
-          <h2>Rekomendasi Kos Untukmu</h2>
-          <a class="pill-link" onclick="go('search')">Lihat Semua →</a>
-        </div>
-        <div class="grid grid-3" id="recoGrid"></div>
-
-        <div class="grid grid-3" style="margin-top:46px;">
-          <div class="card" style="padding:22px;">
-            <div class="stat-icon" style="margin-bottom:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21V7l8-4 8 4v14"/><path d="M9 21v-6h6v6"/></svg></div>
-            <h4 style="font-size:16px; margin-bottom:6px;">Banyak Pilihan</h4>
-            <p style="font-size:13.5px; color:var(--text-soft); line-height:1.55;">Ribuan pilihan kos terverifikasi di berbagai kota, dekat kampus favoritmu.</p>
-          </div>
-          <div class="card" style="padding:22px;">
-            <div class="stat-icon" style="margin-bottom:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
-            <h4 style="font-size:16px; margin-bottom:6px;">Booking Mudah</h4>
-            <p style="font-size:13.5px; color:var(--text-soft); line-height:1.55;">Ajukan survei dan booking secara online tanpa perlu datang berkali-kali.</p>
-          </div>
-          <div class="card" style="padding:22px;">
-            <div class="stat-icon" style="margin-bottom:12px;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6l8-4z"/></svg></div>
-            <h4 style="font-size:16px; margin-bottom:6px;">Aman & Terpercaya</h4>
-            <p style="font-size:13.5px; color:var(--text-soft); line-height:1.55;">Semua ulasan penghuni asli dan pemilik kos terverifikasi identitasnya.</p>
-          </div>
-        </div>
+      @media (max-width: 900px) {
+        #sidebar {
+          display: none;
+        }
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .detail-layout,
+        .search-layout {
+          grid-template-columns: 1fr;
+        }
+        #topbar nav {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ============ TOPBAR ============ -->
+    <div id="topbar">
+      <div class="logo" onclick="go('beranda')">
+        <span class="roof-mark">
+          <svg viewBox="0 0 24 20" fill="none">
+            <path
+              d="M2 10L12 2L22 10"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M5 9V18H19V9"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
+        KOSKU
       </div>
-    </section>
-
-    <!-- ============================================================ -->
-    <!-- TENTANG KAMI -->
-    <!-- ============================================================ -->
-    <section class="page" id="page-tentang">
-      <div class="container">
-        <div class="about-hero">
-          <span class="eyebrow" style="color:var(--sand)">Cerita Kami</span>
-          <h1>Rumah Kedua untuk Setiap Perantau</h1>
-          <p>KOSKU lahir dari pengalaman sederhana: mencari kos yang aman dan nyaman seharusnya tidak lebih sulit daripada mengikuti perkuliahan itu sendiri.</p>
-        </div>
-
-        <div class="grid grid-2" style="align-items:center; margin-bottom:10px;">
-          <div>
-            <span class="eyebrow">Kisah Kami</span>
-            <h2 style="font-size:26px; margin-bottom:14px;">Berawal dari Kesulitan Mencari Kos</h2>
-            <p style="font-size:14px; color:var(--text-soft); line-height:1.75; margin-bottom:14px;">KOSKU dimulai tahun 2023 oleh sekelompok mahasiswa perantauan yang lelah bolak-balik survei kos secara manual, sering kali berujung kecewa karena kondisi kos tidak sesuai foto yang ditawarkan.</p>
-            <p style="font-size:14px; color:var(--text-soft); line-height:1.75;">Dari situ kami membangun KOSKU: sebuah tempat di mana pencari kos bisa melihat detail lengkap, ulasan penghuni asli, dan mengajukan survei tanpa perlu datang berkali-kali — sementara pemilik kos bisa mengelola properti mereka dengan lebih mudah.</p>
-          </div>
-          <div class="story-illustration">
-            <svg viewBox="0 0 160 140" fill="none"><path d="M10 74L80 20L150 74" stroke="#12343b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><rect x="28" y="72" width="104" height="52" fill="#fffdfb" stroke="#12343b" stroke-width="5"/><rect x="46" y="88" width="20" height="20" fill="#12343b"/><rect x="94" y="88" width="20" height="20" fill="#12343b"/><rect x="70" y="108" width="20" height="16" fill="#12343b"/></svg>
-          </div>
-        </div>
-
-        <div class="section-head" style="margin-top:50px;"><h2>Visi & Misi</h2></div>
-        <div class="grid grid-2" style="margin-bottom:44px;">
-          <div class="card value-card">
-            <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6l8-4z"/></svg></div>
-            <h4 style="font-size:16px; margin-bottom:6px;">Visi</h4>
-            <p style="font-size:13.5px; color:var(--text-soft); line-height:1.6;">Menjadi platform pencarian kos paling dipercaya di Indonesia, di mana setiap perantau bisa menemukan tempat tinggal yang terasa seperti rumah.</p>
-          </div>
-          <div class="card value-card">
-            <div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
-            <h4 style="font-size:16px; margin-bottom:6px;">Misi</h4>
-            <p style="font-size:13.5px; color:var(--text-soft); line-height:1.6;">Menghadirkan informasi kos yang jujur dan transparan, mempermudah proses survei dan booking, serta menjadi jembatan yang saling menguntungkan antara pencari dan pemilik kos.</p>
-          </div>
-        </div>
-
-        <div class="grid grid-3">
-          <div class="card" style="padding:24px; text-align:center;">
-            <div class="stat-num" style="font-size:30px;">1.200+</div>
-            <div class="stat-label" style="margin-top:4px;">Kos Terdaftar</div>
-          </div>
-          <div class="card" style="padding:24px; text-align:center;">
-            <div class="stat-num" style="font-size:30px;">15</div>
-            <div class="stat-label" style="margin-top:4px;">Kota di Indonesia</div>
-          </div>
-          <div class="card" style="padding:24px; text-align:center;">
-            <div class="stat-num" style="font-size:30px;">8.500+</div>
-            <div class="stat-label" style="margin-top:4px;">Mahasiswa Terbantu</div>
-          </div>
-        </div>
+      <nav id="guestNav">
+        <a class="navlink" data-page="beranda" onclick="go('beranda')"
+          >Beranda</a
+        >
+        <a class="navlink" data-page="search" onclick="go('search')"
+          >Cari Kos</a
+        >
+        <a class="navlink" data-page="tentang" onclick="go('tentang')"
+          >Tentang Kami</a
+        >
+        <a class="navlink" data-page="bantuan" onclick="go('bantuan')"
+          >Bantuan</a
+        >
+      </nav>
+      <div class="topbar-actions" id="topbarActions">
+        <button class="btn btn-ghost btn-sm" onclick="go('login')">
+          Login
+        </button>
+        <button class="btn btn-primary btn-sm" onclick="go('register')">
+          Daftar
+        </button>
       </div>
-    </section>
+    </div>
 
-    <!-- ============================================================ -->
-    <!-- BANTUAN / FAQ -->
-    <!-- ============================================================ -->
-    <section class="page" id="page-bantuan">
-      <div class="container" style="max-width:760px;">
-        <div style="text-align:center; margin:30px 0 6px;">
-          <span class="eyebrow">Pusat Bantuan</span>
-          <h1 style="font-size:30px; margin-bottom:10px;">Ada yang Bisa Kami Bantu?</h1>
-          <p style="color:var(--text-soft); font-size:14.5px;">Cari jawaban cepat seputar akun, booking, dan kos di bawah ini.</p>
-        </div>
-
-        <div class="faq-search">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-          <input type="text" id="faqSearchInput" placeholder="Cari pertanyaan, mis. 'booking survei'" oninput="filterFaq(this.value)">
-        </div>
-
-        <div id="faqContainer"></div>  
-    <!--apus faq-->   
-      </div>
-    </section>
-
-    <!-- ============================================================ -->
-    <!-- 2. LOGIN -->
-    <!-- ============================================================ -->
-    <section class="page" id="page-login">
-      <div class="auth-wrap">
-        <div class="card auth-card">
-          <h2>Selamat Datang Kembali!</h2>
-          <p class="auth-sub">Masuk untuk melanjutkan ke akun Anda</p>
-          <div class="role-toggle">
-            <div class="role-opt active" id="loginRole-mahasiswa" onclick="setAuthRole('login','mahasiswa')">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
-              Masuk Sebagai<br>Pencari Kos (Mahasiswa)
-            </div>
-            <div class="role-opt" id="loginRole-pemilik" onclick="setAuthRole('login','pemilik')">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
-              Pemilik Kos
-            </div>
-          </div>
-          <form onsubmit="return doLogin(event)">
-            <div class="field"><label>Email</label><input type="email" id="loginEmail" placeholder="Masukkan email Anda" required></div>
-            <div class="field">
-              <label>Password</label>
-              <div class="pw-wrap">
-                <input type="password" id="loginPassword" placeholder="Masukkan password Anda" required>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+    <!-- ============ SHELL ============ -->
+    <div id="shell" class="page-shell-guest">
+      <aside id="sidebar"></aside>
+      <main id="main">
+        <!-- ============================================================ -->
+        <!-- 1. BERANDA -->
+        <!-- ============================================================ -->
+        <section class="page active" id="page-beranda">
+          <div class="container">
+            <div class="hero">
+              <div>
+                <span class="eyebrow" style="color: var(--sand)"
+                  >Platform Kos #1 untuk Mahasiswa</span
+                >
+                <h1>Cari Kos Terbaik Sesuai Kebutuhanmu</h1>
+                <p>
+                  Temukan kos atau kontrakan aman, nyaman, dan sesuai budget di
+                  sekitar kampusmu. Ribuan pilihan, booking survei online, tanpa
+                  ribet.
+                </p>
+                <div class="search-bar">
+                  <input
+                    type="text"
+                    placeholder="Cari lokasi, nama kos, atau fasilitas..."
+                  />
+                  <button class="btn btn-sand" onclick="go('search')">
+                    Cari Sekarang
+                  </button>
+                </div>
+                  </div>
+                    <div class="hero-illustration">
+                    <img src="image/kos.png" alt="Rumah Kos">
+                  </div>
+                  <rect
+                    x="38"
+                    y="88"
+                    width="124"
+                    height="62"
+                    rx="4"
+                    fill="#fffdfb"
+                    stroke="#12343b"
+                    stroke-width="6"
+                  />
+                  <rect x="60" y="106" width="26" height="26" fill="#e1b382" />
+                  <rect x="114" y="106" width="26" height="26" fill="#c89666" />
+                  <rect x="88" y="128" width="24" height="22" fill="#12343b" />
+                </svg>
               </div>
             </div>
-            <div class="helper-row"><span></span><a class="pill-link" onclick="toast('Fitur lupa password segera hadir')">Lupa password?</a></div>
-            <button class="btn btn-primary btn-block" type="submit" id="loginSubmitBtn">Masuk</button>
-          </form>
-          <p class="auth-foot">Belum punya akun? <b onclick="go('register')">Daftar sekarang</b></p>
-          <div class="divider-or">atau masuk dengan</div>
-          <div class="social-row">
-            <button class="social-btn" onclick="toast('Login Google (demo)')">G&nbsp;&nbsp;Google</button>
-            <button class="social-btn" onclick="toast('Login Facebook (demo)')">f&nbsp;&nbsp;Facebook</button>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ============================================================ -->
-    <!-- 3. REGISTER -->
-    <!-- ============================================================ -->
-    <section class="page" id="page-register">
-      <div class="auth-wrap">
-        <div class="card auth-card">
-          <h2>Buat Akun Baru</h2>
-          <p class="auth-sub">Daftar dan bergabung dengan ribuan pengguna lainnya</p>
-          <div class="field"><label>Daftar Sebagai</label></div>
-          <div class="role-toggle" style="margin-top:-8px;">
-            <div class="role-opt active" id="regRole-mahasiswa" onclick="setAuthRole('reg','mahasiswa')">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
-              Pencari Kos<br>(Mahasiswa)
+            <div class="section-head">
+              <h2>Rekomendasi Kos Untukmu</h2>
+              <a class="pill-link" onclick="go('search')">Lihat Semua →</a>
             </div>
-            <div class="role-opt" id="regRole-pemilik" onclick="setAuthRole('reg','pemilik')">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10.5L12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
-              Pemilik Kos
-            </div>
-          </div>
-          <form onsubmit="return doRegister(event)">
-            <div class="field"><label>Nama Lengkap</label><input type="text" id="regNama" placeholder="Masukkan nama lengkap" required></div>
-            <div class="field"><label>Email</label><input type="email" id="regEmail" placeholder="Masukkan email Anda" required></div>
-            <div class="field"><label>Password</label><input type="password" id="regPassword" placeholder="Buat password minimal 6 karakter" minlength="6" required></div>
-            <button class="btn btn-primary btn-block" type="submit" id="regSubmitBtn" style="margin-top:6px;">Daftar</button>
-          </form>
-          <p class="auth-foot">Sudah punya akun? <b onclick="go('login')">Masuk sekarang</b></p>
-        </div>
-      </div>
-    </section>
+            <div class="grid grid-3" id="recoGrid"></div>
 
-    <!-- ============================================================ -->
-    <!-- 4. HASIL PENCARIAN KOS -->
-    <!-- ============================================================ -->
-    <section class="page" id="page-search">
-      <div class="container">
-        <div class="section-head"><h2>Hasil Pencarian Kos</h2></div>
-        <div class="search-layout">
-          <div class="card filter-panel">
-            <h3>Filter Pencarian</h3>
-            <div class="filter-group">
-              <label>Lokasi</label>
-              <select><option>Pilih lokasi</option><option>Sleman</option><option>Depok</option><option>Gejayan</option></select>
-            </div>
-            <div class="filter-group">
-              <label>Harga / Bulan</label>
-              <div class="range-row">
-                <input type="text" placeholder="Min"><span style="color:var(--text-soft)">–</span><input type="text" placeholder="Max">
+            <div class="grid grid-3" style="margin-top: 46px">
+              <div class="card" style="padding: 22px">
+                <div class="stat-icon" style="margin-bottom: 12px">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M4 21V7l8-4 8 4v14" />
+                    <path d="M9 21v-6h6v6" />
+                  </svg>
+                </div>
+                <h4 style="font-size: 16px; margin-bottom: 6px">
+                  Banyak Pilihan
+                </h4>
+                <p
+                  style="
+                    font-size: 13.5px;
+                    color: var(--text-soft);
+                    line-height: 1.55;
+                  "
+                >
+                  Ribuan pilihan kos terverifikasi di berbagai kota, dekat
+                  kampus favoritmu.
+                </p>
+              </div>
+              <div class="card" style="padding: 22px">
+                <div class="stat-icon" style="margin-bottom: 12px">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M9 11l3 3L22 4" />
+                    <path
+                      d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"
+                    />
+                  </svg>
+                </div>
+                <h4 style="font-size: 16px; margin-bottom: 6px">
+                  Booking Mudah
+                </h4>
+                <p
+                  style="
+                    font-size: 13.5px;
+                    color: var(--text-soft);
+                    line-height: 1.55;
+                  "
+                >
+                  Ajukan survei dan booking secara online tanpa perlu datang
+                  berkali-kali.
+                </p>
+              </div>
+              <div class="card" style="padding: 22px">
+                <div class="stat-icon" style="margin-bottom: 12px">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M12 2l8 4v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6l8-4z"
+                    />
+                  </svg>
+                </div>
+                <h4 style="font-size: 16px; margin-bottom: 6px">
+                  Aman & Terpercaya
+                </h4>
+                <p
+                  style="
+                    font-size: 13.5px;
+                    color: var(--text-soft);
+                    line-height: 1.55;
+                  "
+                >
+                  Semua ulasan penghuni asli dan pemilik kos terverifikasi
+                  identitasnya.
+                </p>
               </div>
             </div>
-            <div class="filter-group">
-              <label>Jenis Kos</label>
-              <select><option>Semua</option><option>Putra</option><option>Putri</option><option>Campur</option></select>
-            </div>
-            <div class="filter-group">
-              <label>Fasilitas</label>
-              <div class="chk-row"><input type="checkbox" checked><span>WiFi</span></div>
-              <div class="chk-row"><input type="checkbox"><span>AC</span></div>
-              <div class="chk-row"><input type="checkbox"><span>Kamar Mandi Dalam</span></div>
-              <div class="chk-row"><input type="checkbox"><span>Dapur</span></div>
-              <div class="chk-row"><input type="checkbox"><span>Parkir</span></div>
-              <div class="chk-row"><input type="checkbox"><span>Keamanan 24 Jam</span></div>
-            </div>
-            <button class="btn btn-primary btn-block" onclick="toast('Filter diterapkan')">Terapkan Filter</button>
           </div>
-          <div>
-            <div class="result-top">
-              <div class="result-search">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-                <input type="text" placeholder="Cari kos atau lokasi...">
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- TENTANG KAMI -->
+        <!-- ============================================================ -->
+        <section class="page" id="page-tentang">
+          <div class="container">
+            <div class="about-hero">
+              <span class="eyebrow" style="color: var(--sand)"
+                >Cerita Kami</span
+              >
+              <h1>Rumah Kedua untuk Setiap Perantau</h1>
+              <p>
+                KOSKU lahir dari pengalaman sederhana: mencari kos yang aman dan
+                nyaman seharusnya tidak lebih sulit daripada mengikuti
+                perkuliahan itu sendiri.
+              </p>
+            </div>
+
+            <div
+              class="grid grid-2"
+              style="align-items: center; margin-bottom: 10px"
+            >
+              <div>
+                <span class="eyebrow">Kisah Kami</span>
+                <h2 style="font-size: 26px; margin-bottom: 14px">
+                  Berawal dari Kesulitan Mencari Kos
+                </h2>
+                <p
+                  style="
+                    font-size: 14px;
+                    color: var(--text-soft);
+                    line-height: 1.75;
+                    margin-bottom: 14px;
+                  "
+                >
+                  KOSKU dimulai tahun 2026 oleh sekelompok mahasiswa perantauan
+                  yang lelah bolak-balik survei kos secara manual, sering kali
+                  berujung kecewa karena kondisi kos tidak sesuai foto yang
+                  ditawarkan.
+                </p>
+                <p
+                  style="
+                    font-size: 14px;
+                    color: var(--text-soft);
+                    line-height: 1.75;
+                  "
+                >
+                  Dari situ kami membangun KOSKU: sebuah tempat di mana pencari
+                  kos bisa melihat detail lengkap, ulasan penghuni asli, dan
+                  mengajukan survei tanpa perlu datang berkali-kali — sementara
+                  pemilik kos bisa mengelola properti mereka dengan lebih mudah.
+                </p>
               </div>
-              <div style="display:flex; align-items:center; gap:10px; font-size:13px; color:var(--text-soft);">
-                <span id="resultCount">Menampilkan 6 kos</span>
-                <select style="border:1.5px solid var(--line); border-radius:8px; padding:7px 10px;"><option>Urutkan: Terbaru</option><option>Harga Terendah</option><option>Rating Tertinggi</option></select>
+              <div class="story-illustration">
+                <svg viewBox="0 0 160 140" fill="none">
+                  <path
+                    d="M10 74L80 20L150 74"
+                    stroke="#12343b"
+                    stroke-width="6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <rect
+                    x="28"
+                    y="72"
+                    width="104"
+                    height="52"
+                    fill="#fffdfb"
+                    stroke="#12343b"
+                    stroke-width="5"
+                  />
+                  <rect x="46" y="88" width="20" height="20" fill="#12343b" />
+                  <rect x="94" y="88" width="20" height="20" fill="#12343b" />
+                  <rect x="70" y="108" width="20" height="16" fill="#12343b" />
+                </svg>
               </div>
             </div>
-            <div class="grid grid-2" id="searchGrid"></div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ============================================================ -->
-    <!-- 5. DETAIL KOS -->
-    <!-- ============================================================ -->
-    <section class="page" id="page-detail">
-      <div class="container">
-        <div class="detail-layout">
-          <div>
-            <div class="detail-hero-photo">
-              <span class="status-badge tersedia" style="position:absolute; top:14px; left:14px;">Tersedia</span>
-              <svg viewBox="0 0 200 140" fill="none"><path d="M15 78L100 20L185 78" stroke="#12343b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><rect x="35" y="76" width="130" height="56" fill="#fffdfb" stroke="#12343b" stroke-width="5"/><rect x="55" y="92" width="24" height="24" fill="#12343b"/><rect x="121" y="92" width="24" height="24" fill="#12343b"/></svg>
+            <div class="section-head" style="margin-top: 30px">
+              <h2>Visi & Misi</h2>
             </div>
-            <div class="thumb-row">
-              <div class="thumb"></div><div class="thumb"></div><div class="thumb"></div><div class="thumb"></div>
-            </div>
-
-            <h2 style="font-size:26px; margin-top:26px;">Kos Putri Sakura</h2>
-            <div class="krating" style="margin:8px 0 16px;"><svg viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9.5 16.5,14 18,21 12,17.5 6,21 7.5,14 2,9.5 9,9"/></svg> 4.7 · 32 ulasan</div>
-
-            <h3 style="font-size:17px; margin-bottom:10px;">Informasi Kos</h3>
-            <div class="info-grid">
-              <div class="info-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg> Jenis Kos: <b>Putri</b></div>
-              <div class="info-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg> Luas Kamar: <b>3 x 4 m</b></div>
-              <div class="info-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M4 6h16M4 18h16"/></svg> Kamar Mandi: <b>Dalam</b></div>
-              <div class="info-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z"/></svg> Daya Listrik: <b>1300 Watt</b></div>
-              <div class="info-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg> Jumlah Kamar: <b>12 Kamar</b></div>
-              <div class="info-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg> Lantai: <b>2 Lantai</b></div>
-            </div>
-
-            <h3 style="font-size:17px; margin:20px 0 10px;">Fasilitas</h3>
-            <div class="kfacilities">
-              <span class="fac-tag">WiFi</span><span class="fac-tag">AC</span><span class="fac-tag">Kamar Mandi Dalam</span>
-              <span class="fac-tag">Parkir Motor</span><span class="fac-tag">Dapur Bersama</span><span class="fac-tag">Keamanan 24 Jam</span>
-            </div>
-
-            <h3 style="font-size:17px; margin:22px 0 6px;">Deskripsi</h3>
-            <p style="font-size:13.8px; color:var(--text-soft); line-height:1.65;">Kos Putri Sakura menawarkan kenyamanan dan keamanan untuk mahasiswi. Lingkungan tenang dan dekat dengan kampus UGM dan UII.</p>
-
-            <div class="card" style="padding:18px; margin-top:22px;">
-              <h4 style="font-size:15px; margin-bottom:6px;">Lokasi</h4>
-              <p style="font-size:13px; color:var(--text-soft);">Jl. Kaliurang Km. 5, Sleman</p>
-              <div class="map-box">
-                <svg class="map-pin" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z"/></svg>
+            <div class="grid grid-2" style="margin-bottom: 28px">
+              <div class="card value-card">
+                <div class="stat-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M12 2l8 4v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6l8-4z"
+                    />
+                  </svg>
+                </div>
+                <h4 style="font-size: 16px; margin-bottom: 6px">Visi</h4>
+                <p
+                  style="
+                    font-size: 13.5px;
+                    color: var(--text-soft);
+                    line-height: 1.6;
+                  "
+                >
+                  Menjadi platform pencarian kos paling dipercaya di Indonesia,
+                  di mana setiap perantau bisa menemukan tempat tinggal yang
+                  terasa seperti rumah.
+                </p>
               </div>
-              <a class="pill-link" style="display:block; margin-top:10px;" onclick="go('peta')">Lihat di Maps →</a>
+              <div class="card value-card">
+                <div class="stat-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M9 11l3 3L22 4" />
+                    <path
+                      d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"
+                    />
+                  </svg>
+                </div>
+                <h4 style="font-size: 16px; margin-bottom: 6px">Misi</h4>
+                <p
+                  style="
+                    font-size: 13.5px;
+                    color: var(--text-soft);
+                    line-height: 1.6;
+                  "
+                >
+                  Menghadirkan informasi kos yang jujur dan transparan,
+                  mempermudah proses survei dan booking, serta menjadi jembatan
+                  yang saling menguntungkan antara pencari dan pemilik kos.
+                </p>
+              </div>
             </div>
 
-            <h3 style="font-size:17px; margin:26px 0 4px;">Ulasan Penghuni</h3>
-            <div id="reviewList"></div>
-          </div>
-
-          <div class="sticky-book">
-            <div class="card" style="padding:22px;">
-              <div class="krating"><svg viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9.5 16.5,14 18,21 12,17.5 6,21 7.5,14 2,9.5 9,9"/></svg> 4.7 (32 ulasan)</div>
-              <div style="font-family:'Fraunces',serif; font-weight:700; font-size:27px; color:var(--night-dark); margin:4px 0 18px;">Rp 850.000<span style="font-size:13px; font-weight:500; color:var(--text-soft);"> / bulan</span></div>
-              <button class="btn btn-outline btn-block" style="margin-bottom:10px;" id="favDetailBtn" onclick="toggleDetailFav()">♡ Simpan Favorit</button>
-              <button class="btn btn-primary btn-block" onclick="go('booking-survei'); toast('Booking survei diajukan')">Booking Survei</button>
+            <div class="grid grid-3">
+              <div class="card" style="padding: 20px; text-align: center">
+                <div class="stat-num" style="font-size: 28px">1.200+</div>
+                <div class="stat-label" style="margin-top: 4px">
+                  Kos Terdaftar
+                </div>
+              </div>
+              <div class="card" style="padding: 20px; text-align: center">
+                <div class="stat-num" style="font-size: 28px">15</div>
+                <div class="stat-label" style="margin-top: 4px">
+                  Kota di Indonesia
+                </div>
+              </div>
+              <div class="card" style="padding: 20px; text-align: center">
+                <div class="stat-num" style="font-size: 28px">8.500+</div>
+                <div class="stat-label" style="margin-top: 4px">
+                  Mahasiswa Terbantu
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <!-- ============================================================ -->
-    <!-- 6. FAVORIT -->
-    <!-- ============================================================ -->
-    <section class="page" id="page-favorit">
-      <div class="section-head"><h2>Kos Favorit</h2></div>
-      <div class="grid grid-3" id="favoritGrid"></div>
-    </section>
+        <!-- ============================================================ -->
+        <!-- BANTUAN / FAQ -->
+        <!-- ============================================================ -->
+        <section class="page" id="page-bantuan">
+          <div class="container" style="max-width: 760px">
+            <div style="text-align: center; margin: 18px 0 4px">
+              <span class="eyebrow">Pusat Bantuan</span>
+              <h1 style="font-size: 26px; margin-bottom: 8px">
+                Ada yang Bisa Kami Bantu?
+              </h1>
+              <p style="color: var(--text-soft); font-size: 14.5px">
+                Cari jawaban cepat seputar akun, booking, dan kos di bawah ini.
+              </p>
+            </div>
 
-    <!-- ============================================================ -->
-    <!-- 7. BOOKING SURVEI (mahasiswa) -->
-    <!-- ============================================================ -->
-    <section class="page" id="page-booking-survei">
-      <div class="section-head"><h2>Booking Survei Saya</h2></div>
-      <div class="tab-row" id="tabBookingSurvei">
-        <div class="tab-item active" data-status="Menunggu" onclick="filterBooking(this,'bsGrid')">Menunggu</div>
-        <div class="tab-item" data-status="Disetujui" onclick="filterBooking(this,'bsGrid')">Disetujui</div>
-        <div class="tab-item" data-status="Ditolak" onclick="filterBooking(this,'bsGrid')">Ditolak</div>
-        <div class="tab-item" data-status="Selesai" onclick="filterBooking(this,'bsGrid')">Selesai</div>
-      </div>
-      <div id="bsGrid"></div>
-    </section>
+            <div class="faq-search">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="11" cy="11" r="7" />
+                <path d="M21 21l-4.3-4.3" />
+              </svg>
+              <input
+                type="text"
+                id="faqSearchInput"
+                placeholder="Cari pertanyaan, mis. 'booking survei'"
+                oninput="filterFaq(this.value)"
+              />
+            </div>
 
-    <!-- ============================================================ -->
-    <!-- 8. ULASAN SAYA -->
-    <!-- ============================================================ -->
-    <section class="page" id="page-ulasan-saya">
-      <div class="section-head"><h2>Ulasan Saya</h2></div>
-      <div id="myReviewList"></div>
-    </section>
-
-    <!-- ============================================================ -->
-    <!-- 9. DASHBOARD PEMILIK -->
-    <!-- ============================================================ -->
-    <section class="page" id="page-dashboard-pemilik">
-      <div class="card" style="padding:22px 26px; background:linear-gradient(120deg,var(--night-dark),var(--night)); color:#fff; margin-bottom:22px; border:none;">
-        <h2 style="color:#fff; font-size:21px; margin-bottom:4px;">Selamat Datang, Budi Santoso!</h2>
-        <p style="color:#cfe0e0; font-size:13.5px;">Pemilik Kos</p>
-      </div>
-      <div class="grid grid-3" style="grid-template-columns:repeat(4,1fr); margin-bottom:24px;">
-        <div class="card stat-card"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></div><div><div class="stat-num">5</div><div class="stat-label">Total Kos</div></div></div>
-        <div class="card stat-card"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div><div><div class="stat-num">3</div><div class="stat-label">Kos Tersedia</div></div></div>
-        <div class="card stat-card"><div class="stat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z"/></svg></div><div><div class="stat-num">8</div><div class="stat-label">Booking Baru</div></div></div>
-        <div class="card stat-card"><div class="stat-icon"><svg viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9.5 16.5,14 18,21 12,17.5 6,21 7.5,14 2,9.5 9,9" fill="var(--sand-dark)"/></svg></div><div><div class="stat-num">4.7</div><div class="stat-label">Rating Rata-rata</div></div></div>
-      </div>
-      <div class="grid grid-2">
-        <div class="card" style="padding:20px;">
-          <h4 style="font-size:15px; margin-bottom:4px;">Statistik Booking (30 Hari Terakhir)</h4>
-          <div class="mini-chart" id="miniChart"></div>
-        </div>
-        <div class="card" style="padding:20px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-            <h4 style="font-size:15px;">Kos Terbaru</h4>
-            <a class="pill-link" onclick="go('kelola-kos')">Lihat Semua Kos →</a>
+            <div id="faqContainer"></div>
+            <!--apus faq-->
           </div>
-          <div id="latestKosList"></div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <!-- ============================================================ -->
-    <!-- 10. KELOLA DATA KOS -->
-    <!-- ============================================================ -->
-    <section class="page" id="page-kelola-kos">
-      <div class="section-head">
-        <h2>Data Kos Anda</h2>
-        <button class="btn btn-primary" onclick="go('tambah-kos')">+ Tambah Kos</button>
-      </div>
-      <div class="card" style="overflow:auto;">
-        <table class="data-table" id="ownerKosTable"></table>
-      </div>
-    </section>
+        <!-- ============================================================ -->
+        <!-- 2. LOGIN -->
+        <!-- ============================================================ -->
+        <section class="page" id="page-login">
+          <div class="auth-wrap">
+            <div class="card auth-card">
+              <h2>Selamat Datang Kembali!</h2>
+              <p class="auth-sub">Masuk untuk melanjutkan ke akun Anda</p>
+              <div class="role-toggle">
+                <div
+                  class="role-opt active"
+                  id="loginRole-mahasiswa"
+                  onclick="setAuthRole('login', 'mahasiswa')"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" />
+                  </svg>
+                  Masuk Sebagai<br />Pencari Kos (Mahasiswa)
+                </div>
+                <div
+                  class="role-opt"
+                  id="loginRole-pemilik"
+                  onclick="setAuthRole('login', 'pemilik')"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M3 10.5L12 3l9 7.5" />
+                    <path d="M5 9.5V21h14V9.5" />
+                  </svg>
+                  Pemilik Kos
+                </div>
+              </div>
+              <form onsubmit="return doLogin(event);">
+                <div class="field">
+                  <label>Email</label
+                  ><input
+                    type="email"
+                    id="loginEmail"
+                    placeholder="Masukkan email Anda"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label>Password</label>
+                  <div class="pw-wrap">
+                    <input
+                      type="password"
+                      id="loginPassword"
+                      placeholder="Masukkan password Anda"
+                      required
+                    />
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                  </div>
+                </div>
+                <div class="helper-row">
+                  <span></span
+                  ><a
+                    class="pill-link"
+                    onclick="toast('Fitur lupa password segera hadir')"
+                    >Lupa password?</a
+                  >
+                </div>
+                <button
+                  class="btn btn-primary btn-block"
+                  type="submit"
+                  id="loginSubmitBtn"
+                >
+                  Masuk
+                </button>
+              </form>
+              <p class="auth-foot">
+                Belum punya akun?
+                <b onclick="go('register')">Daftar sekarang</b>
+              </p>
+              <div class="divider-or">atau masuk dengan</div>
+              <div class="social-row">
+                <button
+                  class="social-btn"
+                  onclick="toast('Login Google (demo)')"
+                >
+                  G&nbsp;&nbsp;Google
+                </button>
+                <button
+                  class="social-btn"
+                  onclick="toast('Login Facebook (demo)')"
+                >
+                  f&nbsp;&nbsp;Facebook
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
 
-    <!-- ============================================================ -->
-    <!-- TAMBAH KOS -->
-    <!-- ============================================================ -->
-    <section class="page" id="page-tambah-kos">
-      <div class="section-head"><h2>Tambah Kos Baru</h2></div>
-      <div class="card" style="padding:26px; max-width:640px;">
-        <form onsubmit="return submitTambahKos(event)">
-          <div class="field"><label>Nama Kos</label><input type="text" placeholder="Contoh: Kos Melati Indah" required></div>
-          <div class="field"><label>Alamat Lengkap</label><input type="text" placeholder="Jl. ..." required></div>
+        <!-- ============================================================ -->
+        <!-- 3. REGISTER -->
+        <!-- ============================================================ -->
+        <section class="page" id="page-register">
+          <div class="auth-wrap">
+            <div class="card auth-card">
+              <h2>Buat Akun Baru</h2>
+              <p class="auth-sub">
+                Daftar dan bergabung dengan ribuan pengguna lainnya
+              </p>
+              <div class="field"><label>Daftar Sebagai</label></div>
+              <div class="role-toggle" style="margin-top: -8px">
+                <div
+                  class="role-opt active"
+                  id="regRole-mahasiswa"
+                  onclick="setAuthRole('reg', 'mahasiswa')"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" />
+                  </svg>
+                  Pencari Kos<br />(Mahasiswa)
+                </div>
+                <div
+                  class="role-opt"
+                  id="regRole-pemilik"
+                  onclick="setAuthRole('reg', 'pemilik')"
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M3 10.5L12 3l9 7.5" />
+                    <path d="M5 9.5V21h14V9.5" />
+                  </svg>
+                  Pemilik Kos
+                </div>
+              </div>
+              <form onsubmit="return doRegister(event);">
+                <div class="field">
+                  <label>Nama Lengkap</label
+                  ><input
+                    type="text"
+                    id="regNama"
+                    placeholder="Masukkan nama lengkap"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label>Email</label
+                  ><input
+                    type="email"
+                    id="regEmail"
+                    placeholder="Masukkan email Anda"
+                    required
+                  />
+                </div>
+                <div class="field">
+                  <label>Password</label
+                  ><input
+                    type="password"
+                    id="regPassword"
+                    placeholder="Buat password minimal 6 karakter"
+                    minlength="6"
+                    required
+                  />
+                </div>
+                <button
+                  class="btn btn-primary btn-block"
+                  type="submit"
+                  id="regSubmitBtn"
+                  style="margin-top: 6px"
+                >
+                  Daftar
+                </button>
+              </form>
+              <p class="auth-foot">
+                Sudah punya akun? <b onclick="go('login')">Masuk sekarang</b>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- 4. HASIL PENCARIAN KOS -->
+        <!-- ============================================================ -->
+        <section class="page" id="page-search">
+          <div class="container">
+            <div class="section-head"><h2>Hasil Pencarian Kos</h2></div>
+            <div class="search-layout">
+              <div class="card filter-panel">
+                <h3>Filter Pencarian</h3>
+                <div class="filter-group">
+                  <label>Lokasi</label>
+                  <select>
+                    <option>Pilih lokasi</option>
+                    <option>Sleman</option>
+                    <option>Depok</option>
+                    <option>Gejayan</option>
+                  </select>
+                </div>
+                <div class="filter-group">
+                  <label>Harga / Bulan</label>
+                  <div class="range-row">
+                    <input type="text" placeholder="Min" /><span
+                      style="color: var(--text-soft)"
+                      >–</span
+                    ><input type="text" placeholder="Max" />
+                  </div>
+                </div>
+                <div class="filter-group">
+                  <label>Jenis Kos</label>
+                  <select>
+                    <option>Semua</option>
+                    <option>Putra</option>
+                    <option>Putri</option>
+                    <option>Campur</option>
+                  </select>
+                </div>
+                <div class="filter-group">
+                  <label>Fasilitas</label>
+                  <div class="chk-row">
+                    <input type="checkbox" checked /><span>WiFi</span>
+                  </div>
+                  <div class="chk-row">
+                    <input type="checkbox" /><span>AC</span>
+                  </div>
+                  <div class="chk-row">
+                    <input type="checkbox" /><span>Kamar Mandi Dalam</span>
+                  </div>
+                  <div class="chk-row">
+                    <input type="checkbox" /><span>Dapur</span>
+                  </div>
+                  <div class="chk-row">
+                    <input type="checkbox" /><span>Parkir</span>
+                  </div>
+                  <div class="chk-row">
+                    <input type="checkbox" /><span>Keamanan 24 Jam</span>
+                  </div>
+                </div>
+                <button
+                  class="btn btn-primary btn-block"
+                  onclick="toast('Filter diterapkan')"
+                >
+                  Terapkan Filter
+                </button>
+              </div>
+              <div>
+                <div class="result-top">
+                  <div class="result-search">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <circle cx="11" cy="11" r="7" />
+                      <path d="M21 21l-4.3-4.3" />
+                    </svg>
+                    <input type="text" placeholder="Cari kos atau lokasi..." />
+                  </div>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: 10px;
+                      font-size: 13px;
+                      color: var(--text-soft);
+                    "
+                  >
+                    <span id="resultCount">Menampilkan 6 kos</span>
+                    <select
+                      style="
+                        border: 1.5px solid var(--line);
+                        border-radius: 8px;
+                        padding: 7px 10px;
+                      "
+                    >
+                      <option>Urutkan: Terbaru</option>
+                      <option>Harga Terendah</option>
+                      <option>Rating Tertinggi</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="grid grid-2" id="searchGrid"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- 5. DETAIL KOS -->
+        <!-- ============================================================ -->
+        <section class="page" id="page-detail">
+          <div class="container">
+            <div class="detail-layout">
+              <div>
+                <div class="detail-hero-photo">
+                  <span
+                    class="status-badge tersedia"
+                    style="position: absolute; top: 14px; left: 14px"
+                    >Tersedia</span
+                  >
+                  <svg viewBox="0 0 200 140" fill="none">
+                    <path
+                      d="M15 78L100 20L185 78"
+                      stroke="#12343b"
+                      stroke-width="6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                    <rect
+                      x="35"
+                      y="76"
+                      width="130"
+                      height="56"
+                      fill="#fffdfb"
+                      stroke="#12343b"
+                      stroke-width="5"
+                    />
+                    <rect x="55" y="92" width="24" height="24" fill="#12343b" />
+                    <rect
+                      x="121"
+                      y="92"
+                      width="24"
+                      height="24"
+                      fill="#12343b"
+                    />
+                  </svg>
+                </div>
+                <div class="thumb-row">
+                  <div class="thumb"></div>
+                  <div class="thumb"></div>
+                  <div class="thumb"></div>
+                  <div class="thumb"></div>
+                </div>
+
+                <h2 style="font-size: 26px; margin-top: 26px">
+                  Kos Putri Sakura
+                </h2>
+                <div class="krating" style="margin: 8px 0 16px">
+                  <svg viewBox="0 0 24 24">
+                    <polygon
+                      points="12,2 15,9 22,9.5 16.5,14 18,21 12,17.5 6,21 7.5,14 2,9.5 9,9"
+                    />
+                  </svg>
+                  4.7 · 32 ulasan
+                </div>
+
+                <h3 style="font-size: 17px; margin-bottom: 10px">
+                  Informasi Kos
+                </h3>
+                <div class="info-grid">
+                  <div class="info-item">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <circle cx="12" cy="8" r="4" />
+                      <path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7" />
+                    </svg>
+                    Jenis Kos: <b>Putri</b>
+                  </div>
+                  <div class="info-item">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <rect x="3" y="3" width="18" height="18" rx="2" />
+                    </svg>
+                    Luas Kamar: <b>3 x 4 m</b>
+                  </div>
+                  <div class="info-item">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M4 12h16M4 6h16M4 18h16" />
+                    </svg>
+                    Kamar Mandi: <b>Dalam</b>
+                  </div>
+                  <div class="info-item">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M13 2L3 14h8l-1 8 10-12h-8l1-8z" />
+                    </svg>
+                    Daya Listrik: <b>1300 Watt</b>
+                  </div>
+                  <div class="info-item">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <rect x="4" y="4" width="16" height="16" rx="2" />
+                    </svg>
+                    Jumlah Kamar: <b>12 Kamar</b>
+                  </div>
+                  <div class="info-item">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6" />
+                    </svg>
+                    Lantai: <b>2 Lantai</b>
+                  </div>
+                </div>
+
+                <h3 style="font-size: 17px; margin: 20px 0 10px">Fasilitas</h3>
+                <div class="kfacilities">
+                  <span class="fac-tag">WiFi</span
+                  ><span class="fac-tag">AC</span
+                  ><span class="fac-tag">Kamar Mandi Dalam</span>
+                  <span class="fac-tag">Parkir Motor</span
+                  ><span class="fac-tag">Dapur Bersama</span
+                  ><span class="fac-tag">Keamanan 24 Jam</span>
+                </div>
+
+                <h3 style="font-size: 17px; margin: 22px 0 6px">Deskripsi</h3>
+                <p
+                  style="
+                    font-size: 13.8px;
+                    color: var(--text-soft);
+                    line-height: 1.65;
+                  "
+                >
+                  Kos Putri Sakura menawarkan kenyamanan dan keamanan untuk
+                  mahasiswi. Lingkungan tenang dan dekat dengan kampus UGM dan
+                  UII.
+                </p>
+
+                <div class="card" style="padding: 18px; margin-top: 22px">
+                  <h4 style="font-size: 15px; margin-bottom: 6px">Lokasi</h4>
+                  <p style="font-size: 13px; color: var(--text-soft)">
+                    Jl. Kaliurang Km. 5, Sleman
+                  </p>
+                  <div class="map-box">
+                    <svg
+                      class="map-pin"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z"
+                      />
+                    </svg>
+                  </div>
+                  <a
+                    class="pill-link"
+                    style="display: block; margin-top: 10px"
+                    onclick="go('peta')"
+                    >Lihat di Maps →</a
+                  >
+                </div>
+
+                <h3 style="font-size: 17px; margin: 26px 0 4px">
+                  Ulasan Penghuni
+                </h3>
+                <div id="reviewList"></div>
+              </div>
+
+              <div class="sticky-book">
+                <div class="card" style="padding: 22px">
+                  <div class="krating">
+                    <svg viewBox="0 0 24 24">
+                      <polygon
+                        points="12,2 15,9 22,9.5 16.5,14 18,21 12,17.5 6,21 7.5,14 2,9.5 9,9"
+                      />
+                    </svg>
+                    4.7 (32 ulasan)
+                  </div>
+                  <div
+                    style="
+                      font-family: &quot;Fraunces&quot;, serif;
+                      font-weight: 700;
+                      font-size: 27px;
+                      color: var(--night-dark);
+                      margin: 4px 0 18px;
+                    "
+                  >
+                    Rp 850.000<span
+                      style="
+                        font-size: 13px;
+                        font-weight: 500;
+                        color: var(--text-soft);
+                      "
+                    >
+                      / bulan</span
+                    >
+                  </div>
+                  <button
+                    class="btn btn-outline btn-block"
+                    style="margin-bottom: 10px"
+                    id="favDetailBtn"
+                    onclick="toggleDetailFav()"
+                  >
+                    ♡ Simpan Favorit
+                  </button>
+                  <button
+                    class="btn btn-primary btn-block"
+                    onclick="
+                      go('booking-survei');
+                      toast('Booking survei diajukan');
+                    "
+                  >
+                    Booking Survei
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- 6. FAVORIT -->
+        <!-- ============================================================ -->
+        <section class="page" id="page-favorit">
+          <div class="section-head"><h2>Kos Favorit</h2></div>
+          <div class="grid grid-3" id="favoritGrid"></div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- 7. BOOKING SURVEI (mahasiswa) -->
+        <!-- ============================================================ -->
+        <section class="page" id="page-booking-survei">
+          <div class="section-head"><h2>Booking Survei Saya</h2></div>
+          <div class="tab-row" id="tabBookingSurvei">
+            <div
+              class="tab-item active"
+              data-status="Menunggu"
+              onclick="filterBooking(this, 'bsGrid')"
+            >
+              Menunggu
+            </div>
+            <div
+              class="tab-item"
+              data-status="Disetujui"
+              onclick="filterBooking(this, 'bsGrid')"
+            >
+              Disetujui
+            </div>
+            <div
+              class="tab-item"
+              data-status="Ditolak"
+              onclick="filterBooking(this, 'bsGrid')"
+            >
+              Ditolak
+            </div>
+            <div
+              class="tab-item"
+              data-status="Selesai"
+              onclick="filterBooking(this, 'bsGrid')"
+            >
+              Selesai
+            </div>
+          </div>
+          <div id="bsGrid"></div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- 8. ULASAN SAYA -->
+        <!-- ============================================================ -->
+        <section class="page" id="page-ulasan-saya">
+          <div class="section-head"><h2>Ulasan Saya</h2></div>
+          <div id="myReviewList"></div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- 9. DASHBOARD PEMILIK -->
+        <!-- ============================================================ -->
+        <section class="page" id="page-dashboard-pemilik">
+          <div
+            class="card"
+            style="
+              padding: 22px 26px;
+              background: linear-gradient(
+                120deg,
+                var(--night-dark),
+                var(--night)
+              );
+              color: #fff;
+              margin-bottom: 22px;
+              border: none;
+            "
+          >
+            <h2 style="color: #fff; font-size: 21px; margin-bottom: 4px">
+              Selamat Datang, Budi Santoso!
+            </h2>
+            <p style="color: #cfe0e0; font-size: 13.5px">Pemilik Kos</p>
+          </div>
+          <div
+            class="grid grid-3"
+            style="grid-template-columns: repeat(4, 1fr); margin-bottom: 24px"
+          >
+            <div class="card stat-card">
+              <div class="stat-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6" />
+                </svg>
+              </div>
+              <div>
+                <div class="stat-num">5</div>
+                <div class="stat-label">Total Kos</div>
+              </div>
+            </div>
+            <div class="card stat-card">
+              <div class="stat-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M9 11l3 3L22 4" />
+                  <path
+                    d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"
+                  />
+                </svg>
+              </div>
+              <div>
+                <div class="stat-num">3</div>
+                <div class="stat-label">Kos Tersedia</div>
+              </div>
+            </div>
+            <div class="card stat-card">
+              <div class="stat-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <div class="stat-num">8</div>
+                <div class="stat-label">Booking Baru</div>
+              </div>
+            </div>
+            <div class="card stat-card">
+              <div class="stat-icon">
+                <svg viewBox="0 0 24 24">
+                  <polygon
+                    points="12,2 15,9 22,9.5 16.5,14 18,21 12,17.5 6,21 7.5,14 2,9.5 9,9"
+                    fill="var(--sand-dark)"
+                  />
+                </svg>
+              </div>
+              <div>
+                <div class="stat-num">4.7</div>
+                <div class="stat-label">Rating Rata-rata</div>
+              </div>
+            </div>
+          </div>
           <div class="grid grid-2">
-            <div class="field"><label>Harga / Bulan (Rp)</label><input type="text" placeholder="900000" required></div>
-            <div class="field"><label>Jenis Kos</label><select><option>Putra</option><option>Putri</option><option>Campur</option></select></div>
-          </div>
-          <div class="field"><label>Fasilitas</label>
-            <div class="chk-row"><input type="checkbox"><span>WiFi</span></div>
-            <div class="chk-row"><input type="checkbox"><span>AC</span></div>
-            <div class="chk-row"><input type="checkbox"><span>Kamar Mandi Dalam</span></div>
-            <div class="chk-row"><input type="checkbox"><span>Dapur</span></div>
-          </div>
-          <div class="field"><label>Deskripsi</label><textarea rows="4" placeholder="Ceritakan tentang kos Anda..."></textarea></div>
-          <div class="field"><label>Foto Kos</label>
-            <div style="border:1.5px dashed var(--line); border-radius:10px; padding:26px; text-align:center; color:var(--text-soft); font-size:13px;">Klik atau seret foto ke sini</div>
-          </div>
-          <div style="display:flex; gap:10px; margin-top:6px;">
-            <button class="btn btn-primary" type="submit">Simpan Kos</button>
-            <button class="btn btn-ghost" type="button" onclick="go('kelola-kos')">Batal</button>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <!-- ============================================================ -->
-    <!-- 11. BOOKING MASUK (pemilik) -->
-    <!-- ============================================================ -->
-    <section class="page" id="page-booking-masuk">
-      <div class="section-head"><h2>Permintaan Booking</h2></div>
-      <div class="tab-row" id="tabBookingMasuk">
-        <div class="tab-item active" data-status="Menunggu" onclick="filterBooking(this,'bmGrid')">Menunggu</div>
-        <div class="tab-item" data-status="Disetujui" onclick="filterBooking(this,'bmGrid')">Disetujui</div>
-        <div class="tab-item" data-status="Ditolak" onclick="filterBooking(this,'bmGrid')">Ditolak</div>
-        <div class="tab-item" data-status="Selesai" onclick="filterBooking(this,'bmGrid')">Selesai</div>
-      </div>
-      <div class="card" style="overflow:auto;">
-        <table class="data-table" id="bmGrid"></table>
-      </div>
-    </section>
-
-    <!-- ============================================================ -->
-    <!-- 12. PETA LOKASI -->
-    <!-- ============================================================ -->
-    <section class="page" id="page-peta">
-      <div class="section-head"><h2>Peta Lokasi</h2></div>
-      <div class="card" style="padding:16px; max-width:640px;">
-        <div class="map-box" style="height:280px;">
-          <svg class="map-pin" viewBox="0 0 24 24" fill="currentColor" style="left:46%; top:42%;"><path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z"/></svg>
-        </div>
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px;">
-          <div>
-            <div style="font-weight:700; color:var(--night-dark);">Kos Putri Sakura</div>
-            <div style="font-size:13px; color:var(--text-soft);">Jl. Kaliurang Km. 5, Sleman</div>
-          </div>
-          <button class="btn btn-sand btn-sm" onclick="toast('Membuka rute (demo)')">Lihat Rute</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================ -->
-    <!-- 13. NOTIFIKASI -->
-    <!-- ============================================================ -->
-    <section class="page" id="page-notifikasi">
-      <div class="section-head">
-        <h2>Notifikasi</h2>
-        <a class="pill-link" onclick="markAllRead()">Tandai semua dibaca</a>
-      </div>
-      <div class="card" id="notifList"></div>
-    </section>
-
-    <!-- ============================================================ -->
-    <!-- PROFIL SAYA -->
-    <!-- ============================================================ -->
-    <section class="page" id="page-profil">
-      <div class="section-head">
-        <h2>Profil Saya</h2>
-        <button class="btn btn-outline btn-sm" onclick="go('edit-profil')">Edit Profil</button>
-      </div>
-      <div class="card" style="padding:26px; max-width:560px;">
-        <div style="display:flex; align-items:center; gap:16px; margin-bottom:22px;">
-          <div class="avatar lg" id="profilAvatar">ZA</div>
-          <div>
-            <div style="font-family:'Fraunces',serif; font-weight:700; font-size:19px; color:var(--night-dark);" id="profilName">Zahra Aulia</div>
-            <div style="font-size:13px; color:var(--text-soft);" id="profilRoleLabel">Pencari Kos</div>
-          </div>
-        </div>
-        <div class="field"><label>Nama Lengkap</label><input type="text" id="profilNamaInput" value="Zahra Aulia" disabled></div>
-        <div class="grid grid-2">
-          <div class="field"><label>Email</label><input type="text" id="profilEmailInput" value="zahra.aulia@email.com" disabled></div>
-          <div class="field"><label>No. HP</label><input type="text" value="0812-3456-7890" disabled></div>
-        </div>
-        <div class="field"><label>Bergabung Sejak</label><input type="text" id="profilBergabungInput" value="10 Januari 2024" disabled></div>
-      </div>
-    </section>
-
-    <!-- ============================================================ -->
-    <!-- EDIT PROFIL -->
-    <!-- ============================================================ -->
-    <section class="page" id="page-edit-profil">
-      <div class="section-head"><h2>Edit Profil</h2></div>
-      <div class="card" style="padding:26px; max-width:560px;">
-        <form onsubmit="return saveProfile(event)">
-          <div class="field"><label>Foto Profil</label>
-            <div style="display:flex; align-items:center; gap:14px;">
-              <div class="avatar lg" id="editAvatar">ZA</div>
-              <button class="btn btn-outline btn-sm" type="button" onclick="toast('Pilih foto (demo)')">Pilih Foto</button>
-              <span style="font-size:11.5px; color:var(--text-soft);">JPG, PNG, max 2MB</span>
+            <div class="card" style="padding: 20px">
+              <h4 style="font-size: 15px; margin-bottom: 4px">
+                Statistik Booking (30 Hari Terakhir)
+              </h4>
+              <div class="mini-chart" id="miniChart"></div>
+            </div>
+            <div class="card" style="padding: 20px">
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 8px;
+                "
+              >
+                <h4 style="font-size: 15px">Kos Terbaru</h4>
+                <a class="pill-link" onclick="go('kelola-kos')"
+                  >Lihat Semua Kos →</a
+                >
+              </div>
+              <div id="latestKosList"></div>
             </div>
           </div>
-          <div class="field"><label>Nama Lengkap</label><input type="text" id="editNamaInput" value="Zahra Aulia"></div>
-          <div class="field"><label>Email</label><input type="email" value="zahra.aulia@email.com"></div>
-          <div class="field"><label>No. HP</label><input type="text" value="0812-3456-7890"></div>
-          <button class="btn btn-primary" type="submit" style="margin-top:6px;">Simpan Perubahan</button>
-        </form>
-      </div>
-    </section>
+        </section>
 
-  </main>
-</div>
+        <!-- ============================================================ -->
+        <!-- 10. KELOLA DATA KOS -->
+        <!-- ============================================================ -->
+        <section class="page" id="page-kelola-kos">
+          <div class="section-head">
+            <h2>Data Kos Anda</h2>
+            <button class="btn btn-primary" onclick="go('tambah-kos')">
+              + Tambah Kos
+            </button>
+          </div>
+          <div class="card" style="overflow: auto">
+            <table class="data-table" id="ownerKosTable"></table>
+          </div>
+        </section>
 
-<div class="toast-wrap" id="toastWrap"></div>
-<script src="script.js"></script>
-</body>
+        <!-- ============================================================ -->
+        <!-- TAMBAH KOS -->
+        <!-- ============================================================ -->
+        <section class="page" id="page-tambah-kos">
+          <div class="section-head"><h2>Tambah Kos Baru</h2></div>
+          <div class="card" style="padding: 26px; max-width: 640px">
+            <form onsubmit="return submitTambahKos(event);">
+              <div class="field">
+                <label>Nama Kos</label
+                ><input
+                  type="text"
+                  placeholder="Contoh: Kos Melati Indah"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label>Alamat Lengkap</label
+                ><input type="text" placeholder="Jl. ..." required />
+              </div>
+              <div class="grid grid-2">
+                <div class="field">
+                  <label>Harga / Bulan (Rp)</label
+                  ><input type="text" placeholder="900000" required />
+                </div>
+                <div class="field">
+                  <label>Jenis Kos</label
+                  ><select>
+                    <option>Putra</option>
+                    <option>Putri</option>
+                    <option>Campur</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <label>Fasilitas</label>
+                <div class="chk-row">
+                  <input type="checkbox" /><span>WiFi</span>
+                </div>
+                <div class="chk-row">
+                  <input type="checkbox" /><span>AC</span>
+                </div>
+                <div class="chk-row">
+                  <input type="checkbox" /><span>Kamar Mandi Dalam</span>
+                </div>
+                <div class="chk-row">
+                  <input type="checkbox" /><span>Dapur</span>
+                </div>
+              </div>
+              <div class="field">
+                <label>Deskripsi</label
+                ><textarea
+                  rows="4"
+                  placeholder="Ceritakan tentang kos Anda..."
+                ></textarea>
+              </div>
+              <div class="field">
+                <label>Foto Kos</label>
+                <div
+                  style="
+                    border: 1.5px dashed var(--line);
+                    border-radius: 10px;
+                    padding: 26px;
+                    text-align: center;
+                    color: var(--text-soft);
+                    font-size: 13px;
+                  "
+                >
+                  Klik atau seret foto ke sini
+                </div>
+              </div>
+              <div style="display: flex; gap: 10px; margin-top: 6px">
+                <button class="btn btn-primary" type="submit">
+                  Simpan Kos
+                </button>
+                <button
+                  class="btn btn-ghost"
+                  type="button"
+                  onclick="go('kelola-kos')"
+                >
+                  Batal
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- 11. BOOKING MASUK (pemilik) -->
+        <!-- ============================================================ -->
+        <section class="page" id="page-booking-masuk">
+          <div class="section-head"><h2>Permintaan Booking</h2></div>
+          <div class="tab-row" id="tabBookingMasuk">
+            <div
+              class="tab-item active"
+              data-status="Menunggu"
+              onclick="filterBooking(this, 'bmGrid')"
+            >
+              Menunggu
+            </div>
+            <div
+              class="tab-item"
+              data-status="Disetujui"
+              onclick="filterBooking(this, 'bmGrid')"
+            >
+              Disetujui
+            </div>
+            <div
+              class="tab-item"
+              data-status="Ditolak"
+              onclick="filterBooking(this, 'bmGrid')"
+            >
+              Ditolak
+            </div>
+            <div
+              class="tab-item"
+              data-status="Selesai"
+              onclick="filterBooking(this, 'bmGrid')"
+            >
+              Selesai
+            </div>
+          </div>
+          <div class="card" style="overflow: auto">
+            <table class="data-table" id="bmGrid"></table>
+          </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- 12. PETA LOKASI -->
+        <!-- ============================================================ -->
+        <section class="page" id="page-peta">
+          <div class="section-head"><h2>Peta Lokasi</h2></div>
+          <div class="card" style="padding: 16px; max-width: 640px">
+            <div class="map-box" style="height: 280px">
+              <svg
+                class="map-pin"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                style="left: 46%; top: 42%"
+              >
+                <path
+                  d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z"
+                />
+              </svg>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 14px;
+              "
+            >
+              <div>
+                <div style="font-weight: 700; color: var(--night-dark)">
+                  Kos Putri Sakura
+                </div>
+                <div style="font-size: 13px; color: var(--text-soft)">
+                  Jl. Kaliurang Km. 5, Sleman
+                </div>
+              </div>
+              <button
+                class="btn btn-sand btn-sm"
+                onclick="toast('Membuka rute (demo)')"
+              >
+                Lihat Rute
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- 13. NOTIFIKASI -->
+        <!-- ============================================================ -->
+        <section class="page" id="page-notifikasi">
+          <div class="section-head">
+            <h2>Notifikasi</h2>
+            <a class="pill-link" onclick="markAllRead()">Tandai semua dibaca</a>
+          </div>
+          <div class="card" id="notifList"></div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- PROFIL SAYA -->
+        <!-- ============================================================ -->
+        <section class="page" id="page-profil">
+          <div class="section-head">
+            <h2>Profil Saya</h2>
+            <button class="btn btn-outline btn-sm" onclick="go('edit-profil')">
+              Edit Profil
+            </button>
+          </div>
+          <div class="card" style="padding: 26px; max-width: 560px">
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                margin-bottom: 22px;
+              "
+            >
+              <div class="avatar lg" id="profilAvatar">ZA</div>
+              <div>
+                <div
+                  style="
+                    font-family: &quot;Fraunces&quot;, serif;
+                    font-weight: 700;
+                    font-size: 19px;
+                    color: var(--night-dark);
+                  "
+                  id="profilName"
+                >
+                  Zahra Aulia
+                </div>
+                <div
+                  style="font-size: 13px; color: var(--text-soft)"
+                  id="profilRoleLabel"
+                >
+                  Pencari Kos
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label>Nama Lengkap</label
+              ><input
+                type="text"
+                id="profilNamaInput"
+                value="Zahra Aulia"
+                disabled
+              />
+            </div>
+            <div class="grid grid-2">
+              <div class="field">
+                <label>Email</label
+                ><input
+                  type="text"
+                  id="profilEmailInput"
+                  value="zahra.aulia@email.com"
+                  disabled
+                />
+              </div>
+              <div class="field">
+                <label>No. HP</label
+                ><input type="text" value="0812-3456-7890" disabled />
+              </div>
+            </div>
+            <div class="field">
+              <label>Bergabung Sejak</label
+              ><input
+                type="text"
+                id="profilBergabungInput"
+                value="10 Januari 2024"
+                disabled
+              />
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================================ -->
+        <!-- EDIT PROFIL -->
+        <!-- ============================================================ -->
+        <section class="page" id="page-edit-profil">
+          <div class="section-head"><h2>Edit Profil</h2></div>
+          <div class="card" style="padding: 26px; max-width: 560px">
+            <form onsubmit="return saveProfile(event);">
+              <div class="field">
+                <label>Foto Profil</label>
+                <div style="display: flex; align-items: center; gap: 14px">
+                  <div class="avatar lg" id="editAvatar">ZA</div>
+                  <button
+                    class="btn btn-outline btn-sm"
+                    type="button"
+                    onclick="toast('Pilih foto (demo)')"
+                  >
+                    Pilih Foto
+                  </button>
+                  <span style="font-size: 11.5px; color: var(--text-soft)"
+                    >JPG, PNG, max 2MB</span
+                  >
+                </div>
+              </div>
+              <div class="field">
+                <label>Nama Lengkap</label
+                ><input type="text" id="editNamaInput" value="Zahra Aulia" />
+              </div>
+              <div class="field">
+                <label>Email</label
+                ><input type="email" value="zahra.aulia@email.com" />
+              </div>
+              <div class="field">
+                <label>No. HP</label
+                ><input type="text" value="0812-3456-7890" />
+              </div>
+              <button
+                class="btn btn-primary"
+                type="submit"
+                style="margin-top: 6px"
+              >
+                Simpan Perubahan
+              </button>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast-wrap" id="toastWrap"></div>
+    <script src="script.js"></script>
+  </body>
 </html>
